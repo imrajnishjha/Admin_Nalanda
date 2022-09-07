@@ -8,6 +8,7 @@
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/drawable/button_style_curve.xml" value="0.121" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/drawable/button_style_more_curve.xml" value="0.121" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/drawable/curved_black_edttxt.xml" value="0.121" />
+        <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/drawable/dropdown_item_background.xml" value="0.123" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/drawable/ic_baseline_location_24.xml" value="0.121" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.121" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/drawable/light_blue_rounded_btn.xml" value="0.121" />
@@ -52,6 +53,8 @@
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/fragment_food_fragment.xml" value="0.21403508771929824" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/fragment_my_room_fragment.xml" value="0.21403508771929824" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/fragment_refer_fragment.xml" value="0.21403508771929824" />
+        <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/spinner_dropdown_item.xml" value="0.2131578947368421" />
+        <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/spinner_item.xml" value="0.2131578947368421" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/transport_schedule_item.xml" value="0.21403508771929824" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/menu/bottom_navigation.xml" value="0.1" />
       </map>

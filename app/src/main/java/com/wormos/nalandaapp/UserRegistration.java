@@ -16,6 +16,7 @@ public class UserRegistration extends AppCompatActivity {
     AppCompatButton continueRegBtn,registrationBackBtn;
     Spinner registrationMaleFemaleSpinner;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +31,9 @@ public class UserRegistration extends AppCompatActivity {
         //Methodology
         //Array adapter for male female spinner
         ArrayAdapter<CharSequence> maleFemaleAdapter = ArrayAdapter.createFromResource(this,
-                R.array.male_female_str_array, android.R.layout.simple_spinner_item);
+                R.array.male_female_str_array, R.layout.spinner_item);
 
-        maleFemaleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        maleFemaleAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         registrationMaleFemaleSpinner.setAdapter(maleFemaleAdapter);
 
         registrationBackBtn.setOnClickListener(view -> finish());

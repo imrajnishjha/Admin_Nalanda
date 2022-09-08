@@ -177,43 +177,27 @@
                 android:textSize="14sp"
                 tools:ignore="HardcodedText" />
 
-            <EditText
-                android:id="@+id/registration_state_edtTxt"
+            <Spinner
+                android:id="@+id/registration_states_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_black_edt_txt"
-                android:fontFamily="@font/poppins_regular"
-                android:hint="State"
-                android:textColor="@color/black"
-                android:importantForAutofill="no"
-                android:inputType="text"
                 android:paddingStart="16dp"
                 android:paddingTop="4dp"
                 android:paddingEnd="16dp"
-                android:paddingBottom="4dp"
-                android:textColorHint="@color/text_grey"
-                android:textSize="14sp"
-                tools:ignore="HardcodedText" />
+                android:paddingBottom="4dp" />
 
-            <EditText
-                android:id="@+id/registration_city_edtTxt"
+            <Spinner
+                android:id="@+id/registration_cities_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_black_edt_txt"
-                android:fontFamily="@font/poppins_regular"
-                android:hint="City"
-                android:textColor="@color/black"
-                android:importantForAutofill="no"
-                android:inputType="text"
                 android:paddingStart="16dp"
                 android:paddingTop="4dp"
                 android:paddingEnd="16dp"
-                android:paddingBottom="4dp"
-                android:textColorHint="@color/text_grey"
-                android:textSize="14sp"
-                tools:ignore="HardcodedText" />
+                android:paddingBottom="4dp" />
 
             <EditText
                 android:id="@+id/registration_address_edtTxt"

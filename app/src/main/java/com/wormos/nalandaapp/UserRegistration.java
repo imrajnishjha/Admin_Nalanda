@@ -100,6 +100,17 @@ public class UserRegistration extends AppCompatActivity {
                 case"Mizoram": citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_mizoram_cities, R.layout.spinner_item); break;
                 case"Nagaland": citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_nagaland_cities, R.layout.spinner_item); break;
                 case"Orissa": citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_orissa_cities, R.layout.spinner_item); break;
+                case"Puducherry": citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_puducherry_cities, R.layout.spinner_item); break;
+                case"Punjab": citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_punjab_cities, R.layout.spinner_item); break;
+                case"Rajasthan": citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_rajasthan_cities, R.layout.spinner_item); break;
+                case"Sikkim": citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_sikkim_cities, R.layout.spinner_item); break;
+                case"Tamilnadu": citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_tamil_nadu_cities, R.layout.spinner_item); break;
+                case"Telangana": citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_telangana_cities, R.layout.spinner_item); break;
+                case"Tripura": citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_tripura_cities, R.layout.spinner_item); break;
+                case"Uttarakhand": citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_uttarakhand_cities, R.layout.spinner_item); break;
+                case"Uttar Pradesh": citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_uttar_pradesh_cities, R.layout.spinner_item); break;
+                case"West Bengal": citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_west_bengal_cities, R.layout.spinner_item); break;
+                default: citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.cities_default_array, R.layout.spinner_item); break;
             }
             citiesSpinnerAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
             registrationCitiesSpinner.setAdapter(citiesSpinnerAdapter);

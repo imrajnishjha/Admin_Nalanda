@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "923162171325",
+    "project_id": "nalanda-app-bd1d8",
+    "storage_bucket": "nalanda-app-bd1d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923162171325:android:9ab9bc942e52e0302264d4",
+        "android_client_info": {
+          "package_name": "com.wormos.nalandaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923162171325-4guobpeues3joh2or6m427pqfm759pm0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBasZoVQOYeyzSasdLE-uKIBddafYqYSBg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923162171325-4guobpeues3joh2or6m427pqfm759pm0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

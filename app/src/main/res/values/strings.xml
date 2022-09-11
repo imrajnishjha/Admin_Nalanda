@@ -52,7 +52,7 @@
         <item>Punjab</item>
         <item>Rajasthan</item>
         <item>Sikkim</item>
-        <item>Tamil Nadu</item>
+        <item>Tamilnadu</item>
         <item>Telangana</item>
         <item>Tripura</item>
         <item>Uttarakhand</item>
@@ -1403,6 +1403,18 @@
         <item>Rayagada</item>
         <item>Sambalpur</item>
         <item>Sunabeda</item>
+    </string-array>
+
+    <string-array name="array_sikkim_cities">
+        <item>Gangtok(incl. Upper Tadong)</item>
+        <item>Gyalshing</item>
+        <item>Jorethang</item>
+        <item>Mangan</item>
+        <item>Namchi</item>
+        <item>Nayabazar</item>
+        <item>Rangpo</item>
+        <item>Rhenak(Rhenock)</item>
+        <item>Singtam</item>
     </string-array>
 
     <string-array name="cities_default_array">

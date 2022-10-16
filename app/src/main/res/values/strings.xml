@@ -59,7 +59,7 @@
         <item>Uttar Pradesh</item>
         <item>West Bengal</item>
     </string-array>
-    
+
     <string-array name="array_andra_pradesh_cities">
         <item>Adoni</item>
         <item>Amalapuram</item>
@@ -149,7 +149,7 @@
     <string-array name="array_andaman_and_nicobar_cities">
         <item>Port Blair</item>
     </string-array>
-    
+
     <string-array name="array_arunachal_pradesh_cities">
         <item>Naharlagun</item>
         <item>Pasighat</item>

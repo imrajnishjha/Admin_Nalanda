@@ -33,11 +33,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="bottom"
                 android:text="alanda Living"
                 android:textColor="@color/black"
-                android:gravity="bottom"
                 android:textSize="18sp"
-                tools:ignore="HardcodedText"/>
+                tools:ignore="HardcodedText" />
         </LinearLayout>
 
         <LinearLayout
@@ -109,7 +109,7 @@
                 android:autofillHints="emailAddress"
                 android:background="@drawable/rounded_black_edt_txt"
                 android:fontFamily="@font/poppins_regular"
-                android:hint="Username"
+                android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:paddingStart="16dp"
                 android:paddingTop="16dp"
@@ -121,7 +121,6 @@
                 tools:ignore="HardcodedText" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/login_password_edtTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -133,6 +132,7 @@
                 tools:ignore="HardcodedText">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_password_edtTxt"
                     style="@style/Widget.Material3.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

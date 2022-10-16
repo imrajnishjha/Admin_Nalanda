@@ -1,5 +1,6 @@
 package com.wormos.nalandaapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -7,12 +8,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentTransaction;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import io.ak1.BubbleTabBar;
 
 public class Dashboard extends AppCompatActivity {
 
     BubbleTabBar bottomNavBar;
     CardView dashboardTransportCv, dashboardLaundryCv, dashboardHouseKeepingCv, dashboardRepairCv;
+    CircleImageView dashboardProfilePhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +28,9 @@ public class Dashboard extends AppCompatActivity {
         dashboardLaundryCv = findViewById(R.id.dashboard_laundry_cv);
         dashboardHouseKeepingCv = findViewById(R.id.dashboard_house_keeping_cv);
         dashboardRepairCv = findViewById(R.id.dashboard_repair_cv);
+        dashboardProfilePhoto = findViewById(R.id.dashboard_profile_photo);
 
         //methodology
-
         FragmentTransaction dashboardTrans = getSupportFragmentManager().beginTransaction();
         dashboardTrans.replace(R.id.dashboard_fragment_holder, new dashboard_fragment());
         dashboardTrans.commit();
@@ -70,6 +73,8 @@ public class Dashboard extends AppCompatActivity {
             }
             transaction.commit();
         });
+
+        dashboardProfilePhoto.setOnClickListener(view -> startActivity(new Intent(Dashboard.this, StudentProfile.class)));
 
     }
 

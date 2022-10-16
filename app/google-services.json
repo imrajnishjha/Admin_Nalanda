@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "923162171325",
-    "project_id": "nalanda-app-bd1d8",
-    "storage_bucket": "nalanda-app-bd1d8.appspot.com"
+    "project_number": "364771278889",
+    "firebase_url": "https://nalanda-app-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "nalanda-app",
+    "storage_bucket": "nalanda-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:923162171325:android:9ab9bc942e52e0302264d4",
+        "mobilesdk_app_id": "1:364771278889:android:a25b1157094cff482a1c38",
         "android_client_info": {
           "package_name": "com.wormos.nalandaapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "923162171325-4guobpeues3joh2or6m427pqfm759pm0.apps.googleusercontent.com",
+          "client_id": "364771278889-lftuho37hvq471pei1nng86vg3n4jinh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBasZoVQOYeyzSasdLE-uKIBddafYqYSBg"
+          "current_key": "AIzaSyDLNGNmyvaBczH7cQ5LtnVs0WGNgU4g2Cw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "923162171325-4guobpeues3joh2or6m427pqfm759pm0.apps.googleusercontent.com",
+              "client_id": "364771278889-lftuho37hvq471pei1nng86vg3n4jinh.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

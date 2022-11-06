@@ -1,4 +1,4 @@
-package com.wormos.nalandaapp;
+package com.wormos.nalandaadmin;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -7,11 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.wormos.nalandaapp.UserLogin;
-import com.wormos.nalandaapp.UserRegistration;
 
 public class ExploreNalanda extends AppCompatActivity {
-    AppCompatButton loginBtn,exploreBtn;
+    AppCompatButton loginBtn;
     FirebaseAuth mAuth;
 
     @Override
@@ -26,10 +24,10 @@ public class ExploreNalanda extends AppCompatActivity {
         }
 
         loginBtn= findViewById(R.id.explore_login_btn);
-        exploreBtn = findViewById(R.id.explore_registration_btn);
+
 
         //Methodology
-        exploreBtn.setOnClickListener(view -> startActivity(new Intent(this, UserRegistration.class)));
+
         loginBtn.setOnClickListener(view -> startActivity(new Intent(this, UserLogin.class)));
     }
 }

@@ -1,10 +1,9 @@
-package com.wormos.nalandaapp;
+package com.wormos.nalandaadmin;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class UserLogin extends AppCompatActivity {
 
-    TextView loginNewUserTv;
+
     AppCompatButton loginBackBtn, loginBtn;
     EditText loginUsernameEdtTxt, loginPasswordEdtTxt;
     FirebaseAuth mAuth;
@@ -25,7 +24,7 @@ public class UserLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
 
-        loginNewUserTv = findViewById(R.id.login_new_user_tv);
+
         loginBackBtn = findViewById(R.id.login_back_btn);
         loginBtn = findViewById(R.id.login_btn);
         loginUsernameEdtTxt = findViewById(R.id.login_username_edtTxt);
@@ -33,11 +32,6 @@ public class UserLogin extends AppCompatActivity {
 
         //Methodology
         loginBackBtn.setOnClickListener(view -> finish());
-
-        loginNewUserTv.setOnClickListener(view -> {
-            startActivity(new Intent(UserLogin.this, UserRegistration.class));
-            finish();
-        });
 
         loginBtn.setOnClickListener(view -> loginUser());
     }

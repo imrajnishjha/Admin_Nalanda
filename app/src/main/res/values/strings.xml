@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nalanda Livings</string>
+    <string name="app_name">Admin Nalanda</string>
     <string name="nalanda_name">alanda</string>
     <string name="explore_text">In strange place, unfamiliar faces, streets and languages all around. Wouldn\'t it be nice to find a place that feels just like home?</string>
     <string name="select_hostel"><u>Select Hostel</u></string>
@@ -15,6 +15,9 @@
     <string name="add_money"><u>add money</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="gaming_room">Gaming Room</string>
+    <string name="book_now">Book Now</string>
+    <string name="what_s_happening">What\'s Happening</string>
 
     <string-array name="male_female_str_array">
         <item>Select Gender</item>

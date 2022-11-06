@@ -1,4 +1,4 @@
-package com.wormos.nalandaapp;
+package com.wormos.nalandaadmin;
 
 import org.junit.Test;
 

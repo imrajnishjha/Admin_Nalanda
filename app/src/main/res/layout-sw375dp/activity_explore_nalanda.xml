@@ -78,48 +78,31 @@
             android:textSize="12sp"
             app:layout_constraintTop_toBottomOf="@+id/explore_welcome_text"
             tools:targetApi="o" />
+
         <TextView
+            android:id="@+id/explore_null_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:id="@+id/explore_null_text"
-            app:layout_constraintTop_toBottomOf="@id/explore_text"
-            app:layout_constraintBottom_toTopOf="@id/explore_registration_btn"/>
+            app:layout_constraintBottom_toTopOf="@id/explore_login_btn"
+            app:layout_constraintTop_toBottomOf="@id/explore_text" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/explore_registration_btn"
-            android:background="@drawable/curverectangle1"
-            android:layout_marginStart="30dp"
-            android:text="Explore Nalanda"
-            android:textAllCaps="false"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/different_black"
-            android:gravity="center"
-            android:textSize="18sp"
-            android:layout_marginEnd="30dp"
-            app:layout_constraintTop_toBottomOf="@id/explore_null_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/curverectangle2"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
             android:id="@+id/explore_login_btn"
-            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/curverectangle2"
+            android:backgroundTint="#2F3A70"
+            android:fontFamily="@font/poppins_regular"
             android:text="Login as Existing User..."
             android:textAllCaps="false"
             android:textSize="18sp"
-            android:fontFamily="@font/poppins_regular"
-            android:backgroundTint="#2F3A70"
-            app:layout_constraintTop_toBottomOf="@id/explore_registration_btn"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/explore_null_text"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -88,45 +88,27 @@
             android:id="@+id/explore_null_text"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/explore_registration_btn"
+            app:layout_constraintBottom_toTopOf="@id/explore_login_btn"
             app:layout_constraintTop_toBottomOf="@id/explore_text" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/explore_registration_btn"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/curverectangle1"
-            android:fontFamily="@font/poppins_regular"
-            android:gravity="center"
-            android:text="Explore Nalanda"
-            android:textAllCaps="false"
-            android:textColor="@color/different_black"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/explore_null_text" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/explore_login_btn"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
             android:layout_marginEnd="16dp"
-            android:textColor="@color/white"
             android:layout_marginBottom="10dp"
             android:background="@drawable/curverectangle2"
             android:backgroundTint="#2F3A70"
             android:fontFamily="@font/poppins_regular"
             android:text="Login as Existing User..."
             android:textAllCaps="false"
+            android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/explore_registration_btn" />
+            app:layout_constraintTop_toBottomOf="@id/explore_null_text"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

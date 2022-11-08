@@ -18,6 +18,7 @@
     <string name="gaming_room">Gaming Room</string>
     <string name="book_now">Book Now</string>
     <string name="what_s_happening">What\'s Happening</string>
+    <string name="dashboarda">"User Attendance"</string>
 
     <string-array name="male_female_str_array">
         <item>Select Gender</item>

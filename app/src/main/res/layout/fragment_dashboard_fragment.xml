@@ -47,6 +47,223 @@
             app:layout_constraintTop_toBottomOf="@+id/whatsHappeningText"
             tools:layout_editor_absoluteX="20dp" />
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="140dp"
+                android:layout_height="150dp"
+                android:id="@+id/dashboard_attendance"
+                app:cardBackgroundColor="@color/white"
+                android:elevation="5dp"
+                app:cardCornerRadius="10dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/dashboard_users"
+                app:layout_constraintTop_toBottomOf="@id/dashboard_storyRV"
+                android:outlineAmbientShadowColor="@color/different_black"
+                android:outlineSpotShadowColor="@color/different_black">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        app:cardCornerRadius="35dp"
+                        app:cardElevation="7dp"
+                        app:cardBackgroundColor="@color/white"
+                        android:foregroundGravity="center"
+                        android:layout_marginTop="32dp"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:padding="4dp"
+                            android:src="@drawable/attendence"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="User\nAttendance"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="140dp"
+                android:layout_height="150dp"
+                android:id="@+id/dashboard_users"
+                android:layout_gravity="end"
+                app:cardBackgroundColor="@color/white"
+                android:elevation="5dp"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintTop_toBottomOf="@id/dashboard_storyRV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/dashboard_attendance"
+                android:outlineAmbientShadowColor="@color/different_black"
+                android:outlineSpotShadowColor="@color/different_black">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        app:cardCornerRadius="35dp"
+                        app:cardElevation="7dp"
+                        app:cardBackgroundColor="@color/white"
+                        android:foregroundGravity="center"
+                        android:layout_marginTop="32dp"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:padding="5dp"
+                            android:src="@drawable/registeruser"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="User\nRegistered"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="140dp"
+                android:layout_height="150dp"
+                android:layout_gravity="start"
+                app:cardBackgroundColor="@color/white"
+                android:elevation="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/dashboard_verification"
+                app:layout_constraintTop_toBottomOf="@id/dashboard_attendance"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/dashboard_roomAllocation"
+                app:cardCornerRadius="10dp"
+                android:outlineAmbientShadowColor="@color/different_black"
+                android:outlineSpotShadowColor="@color/different_black">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        app:cardCornerRadius="35dp"
+                        app:cardElevation="7dp"
+                        app:cardBackgroundColor="@color/white"
+                        android:foregroundGravity="center"
+                        android:layout_marginTop="32dp"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:padding="5dp"
+                            android:src="@drawable/userverification"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="User\nVerification"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="140dp"
+                android:layout_height="150dp"
+                android:layout_gravity="end"
+                app:cardBackgroundColor="@color/white"
+                android:elevation="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/dashboard_roomAllocation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dashboard_users"
+                app:layout_constraintStart_toEndOf="@id/dashboard_verification"
+                app:cardCornerRadius="10dp"
+                android:outlineAmbientShadowColor="@color/different_black"
+                android:outlineSpotShadowColor="@color/different_black">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        app:cardCornerRadius="35dp"
+                        app:cardElevation="7dp"
+                        app:cardBackgroundColor="@color/white"
+                        android:foregroundGravity="center"
+                        android:layout_marginTop="32dp"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:padding="6dp"
+                            android:src="@drawable/room_allocation"/>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/poppins_regular"
+                        android:text="Room\nAllocation"
+                        android:gravity="center"
+                        android:padding="10dp"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

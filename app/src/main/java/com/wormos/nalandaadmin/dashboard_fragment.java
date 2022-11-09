@@ -1,7 +1,9 @@
 package com.wormos.nalandaadmin;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +24,7 @@ public class dashboard_fragment extends Fragment {
     FirebaseRecyclerOptions<HighLightModel> highLightOption;
     StoryAdapter storyAdapter;
     HighLightAdapter highLightAdapter;
+    CardView attendanceCard,registeredUser;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,12 @@ public class dashboard_fragment extends Fragment {
                 .build();
         storyAdapter = new StoryAdapter(storyOption);
         storyRV.setAdapter(storyAdapter);
+
+        //navigation's
+        attendanceCard = view.findViewById(R.id.dashboard_attendance);
+        registeredUser = view.findViewById(R.id.dashboard_users);
+        attendanceCard.setOnClickListener(v->startActivity(new Intent(getContext(),UserAttendance.class)));
+        registeredUser.setOnClickListener(v->startActivity(new Intent(getContext(),UserRegistered.class)));
 
         return view;
     }

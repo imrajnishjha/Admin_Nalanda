@@ -1,13 +1,8 @@
 package com.wormos.nalandaadmin;
 
-import android.annotation.SuppressLint;
-import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,20 +22,21 @@ import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class UserRegisteredAdapter extends FirebaseRecyclerAdapter<UserRegisteredModel,UserRegisteredAdapter.UserRegisteredViewHolder> {
+public class UserVerificationAdapter extends FirebaseRecyclerAdapter<UserVerificationModel,UserVerificationAdapter.userVerificationViewHolder> {
+
 
     /**
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
      *
      */
-    public UserRegisteredAdapter(@NonNull FirebaseRecyclerOptions<UserRegisteredModel> options) {
+    public UserVerificationAdapter(@NonNull FirebaseRecyclerOptions<UserVerificationModel> options) {
         super(options);
     }
     DatabaseReference studentData = FirebaseDatabase.getInstance().getReference("Students");
 
     @Override
-    protected void onBindViewHolder(@NonNull UserRegisteredViewHolder holder, int position, @NonNull UserRegisteredModel model) {
+    protected void onBindViewHolder(@NonNull userVerificationViewHolder holder, int position, @NonNull UserVerificationModel model) {
         holder.userId.setText(model.getId());
 
         studentData.child(Objects.requireNonNull(getRef(position).getKey())).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -61,45 +57,28 @@ public class UserRegisteredAdapter extends FirebaseRecyclerAdapter<UserRegistere
 
             }
         });
-        holder.removeBtn.setOnClickListener(view -> {
-            Dialog confirmationDialog = new Dialog(view.getContext());
-            @SuppressLint("InflateParams") View v = LayoutInflater.from(view.getContext()).inflate(R.layout.are_you_sure_popup,null,false);
-            TextView yesBtn = v.findViewById(R.id.yesbtn);
-            TextView noBtn = v.findViewById(R.id.nobtn);
-            confirmationDialog.setContentView(v);
-            confirmationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            confirmationDialog.show();
-
-            noBtn.setOnClickListener(noView->{
-                confirmationDialog.dismiss();
-            });
-
-            yesBtn.setOnClickListener(yesView->{
-
-            });
-
-        });
     }
 
     @NonNull
     @Override
-    public UserRegisteredViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.registered_user_item,parent,false);
-        return new UserRegisteredViewHolder(view);
+    public userVerificationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_verification_item,parent,false);
+        return new userVerificationViewHolder(view);
     }
 
-    static class UserRegisteredViewHolder extends RecyclerView.ViewHolder{
+    static class userVerificationViewHolder extends RecyclerView.ViewHolder{
 
         CircleImageView userProfile;
         TextView userName,userId;
-        AppCompatButton removeBtn;
+        AppCompatButton rejectBtn,approveBtn;
 
-        public UserRegisteredViewHolder(@NonNull View itemView) {
+        public userVerificationViewHolder(@NonNull View itemView) {
             super(itemView);
-            userProfile = itemView.findViewById(R.id.registration_user_profile);
-            userName = itemView.findViewById(R.id.registration_user_name);
-            userId = itemView.findViewById(R.id.registration_user_id);
-            removeBtn = itemView.findViewById(R.id.registration_reject_btn);
+            userProfile = itemView.findViewById(R.id.verification_user_profile);
+            userName = itemView.findViewById(R.id.verification_user_name);
+            userId = itemView.findViewById(R.id.verification_user_id);
+            rejectBtn = itemView.findViewById(R.id.verification_remove_btn);
+            approveBtn = itemView.findViewById(R.id.verification_approve_btn);
         }
     }
 }

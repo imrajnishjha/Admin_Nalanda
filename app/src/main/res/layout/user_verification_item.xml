@@ -8,7 +8,7 @@
     android:background="@drawable/curve_with_whitebackground">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/registration_user_profile"
+        android:id="@+id/verification_user_profile"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
@@ -22,22 +22,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/registration_user_name"
+        android:id="@+id/verification_user_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toStartOf="@id/registration_ll"
+        app:layout_constraintEnd_toStartOf="@id/verification_ll"
         android:fontFamily="@font/poppins_regular"
         android:text="Manish"
         android:gravity="start|center"
         android:textColor="#4A4A4A"
-        app:layout_constraintBottom_toTopOf="@id/registration_user_id"
-        app:layout_constraintStart_toEndOf="@id/registration_user_profile"
+        app:layout_constraintBottom_toTopOf="@id/verification_user_id"
+        app:layout_constraintStart_toEndOf="@id/verification_user_profile"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/registration_user_id"
+        android:id="@+id/verification_user_id"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
@@ -48,13 +48,13 @@
         android:textSize="12sp"
         android:gravity="start|center"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/registration_ll"
+        app:layout_constraintEnd_toStartOf="@id/verification_ll"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/registration_user_profile"
-        app:layout_constraintTop_toBottomOf="@id/registration_user_name" />
+        app:layout_constraintStart_toEndOf="@id/verification_user_profile"
+        app:layout_constraintTop_toBottomOf="@id/verification_user_name" />
 
     <LinearLayout
-        android:id="@+id/registration_ll"
+        android:id="@+id/verification_ll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
@@ -68,7 +68,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="60dp"
             android:layout_height="25dp"
-            android:id="@+id/registration_approve_btn"
+            android:id="@+id/verification_approve_btn"
             android:background="@drawable/no_border_curve"
             android:text="Approve"
             android:textSize="9sp"
@@ -83,7 +83,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="60dp"
             android:layout_height="25dp"
-            android:id="@+id/registration_reject_btn"
+            android:id="@+id/verification_remove_btn"
             android:background="@drawable/no_border_curve"
             android:text="Reject"
             android:layout_marginStart="7dp"

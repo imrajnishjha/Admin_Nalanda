@@ -24,7 +24,7 @@ public class dashboard_fragment extends Fragment {
     FirebaseRecyclerOptions<HighLightModel> highLightOption;
     StoryAdapter storyAdapter;
     HighLightAdapter highLightAdapter;
-    CardView attendanceCard,registeredUser;
+    CardView attendanceCard,registeredUserCard,userVerificationCard;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,11 +59,13 @@ public class dashboard_fragment extends Fragment {
         storyAdapter = new StoryAdapter(storyOption);
         storyRV.setAdapter(storyAdapter);
 
-        //navigation's
+        //Dashboard navigation's
         attendanceCard = view.findViewById(R.id.dashboard_attendance);
-        registeredUser = view.findViewById(R.id.dashboard_users);
+        registeredUserCard = view.findViewById(R.id.dashboard_users);
+        userVerificationCard = view.findViewById(R.id.dashboard_verification);
         attendanceCard.setOnClickListener(v->startActivity(new Intent(getContext(),UserAttendance.class)));
-        registeredUser.setOnClickListener(v->startActivity(new Intent(getContext(),UserRegistered.class)));
+        registeredUserCard.setOnClickListener(v->startActivity(new Intent(getContext(),UserRegistered.class)));
+        userVerificationCard.setOnClickListener(v->startActivity(new Intent(getContext(),UserVerification.class)));
 
         return view;
     }

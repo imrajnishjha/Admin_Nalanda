@@ -33,42 +33,57 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dashboard_highlightRV" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="120dp"
-            android:layout_height="200dp"
-            android:id="@+id/dashboard_addStoryCV"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@id/whatsHappeningText"
-            app:layout_constraintStart_toStartOf="parent"
-            app:cardCornerRadius="16dp">
-
-            <androidx.constraintlayout.utils.widget.ImageFilterView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/ligh_grey"
-                android:scaleType="centerCrop"/>
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:src="@drawable/addstory"
-                tools:ignore="ContentDescription" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="0dp"
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/storyMotionLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/dashboard_storyRV"
-            android:layout_margin="5dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/dashboard_addStoryCV"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            app:layout_constraintTop_toBottomOf="@+id/whatsHappeningText"
-            tools:layout_editor_absoluteX="20dp" />
+
+            app:layoutDescription="@xml/fragment_dashboard_fragment_xml_storymotionlayout_scene"
+            app:layout_constraintTop_toBottomOf="@id/whatsHappeningText">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dashboard_addStoryCV"
+                android:layout_width="120dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="4dp"
+                app:cardCornerRadius="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/dashboard_storyRV"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.utils.widget.ImageFilterView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/ligh_grey"
+                    android:scaleType="centerCrop" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/plusicon"
+                    tools:ignore="ContentDescription" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/dashboard_storyRV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="4dp"
+                android:elevation="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/dashboard_addStoryCV"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.motion.widget.MotionLayout>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="140dp"
@@ -80,7 +95,7 @@
                 android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/dashboard_users"
-                app:layout_constraintTop_toBottomOf="@id/dashboard_storyRV"
+                app:layout_constraintTop_toBottomOf="@id/storyMotionLayout"
                 android:outlineAmbientShadowColor="@color/different_black"
                 android:outlineSpotShadowColor="@color/different_black">
 
@@ -131,7 +146,7 @@
                 android:elevation="5dp"
                 android:layout_marginTop="20dp"
                 app:cardCornerRadius="10dp"
-                app:layout_constraintTop_toBottomOf="@id/dashboard_storyRV"
+                app:layout_constraintTop_toBottomOf="@id/storyMotionLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/dashboard_attendance"
                 android:outlineAmbientShadowColor="@color/different_black"
@@ -284,6 +299,7 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+
 
 
 

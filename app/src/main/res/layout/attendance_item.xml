@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/attendanceMotionLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="7dp"
-    android:background="@drawable/curve_with_whitebackground">
+    android:background="@drawable/curve_with_whitebackground"
+    app:layoutDescription="@xml/attendance_item_scene">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/attendance_user_profile"
@@ -26,12 +28,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toStartOf="@id/attendance_radio_group"
         android:fontFamily="@font/poppins_regular"
-        android:text="Manish"
         android:gravity="start|center"
+        android:text="Manish"
         android:textColor="#4A4A4A"
         app:layout_constraintBottom_toTopOf="@id/attendance_user_id"
+        app:layout_constraintEnd_toStartOf="@id/attendance_radio_group"
         app:layout_constraintStart_toEndOf="@id/attendance_user_profile"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,13 +44,13 @@
         android:layout_marginStart="25dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/poppins_semi_bold"
+        android:gravity="start|center"
         android:text="#22192034"
         android:textColor="@color/black"
         android:textSize="12sp"
-        android:gravity="start|center"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/attendance_radio_group"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/attendance_radio_group"
         app:layout_constraintStart_toEndOf="@id/attendance_user_profile"
         app:layout_constraintTop_toBottomOf="@id/attendance_user_name" />
 
@@ -60,7 +62,6 @@
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="7dp"
         android:orientation="horizontal"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -104,6 +105,4 @@
     </RadioGroup>
 
 
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

@@ -1,17 +1,17 @@
 package com.wormos.nalandaadmin;
 
-import android.app.Activity;
-import android.content.Context;
-import android.util.Log;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatButton;
+
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -34,20 +35,19 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<StudentHostelMode
      * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
      * {@link FirebaseRecyclerOptions} for configuration options.
      *
-     * @param options
      */
 
     public AttendanceAdapter(@NonNull FirebaseRecyclerOptions<StudentHostelModel> options) {
         super(options);
     }
-    DatabaseReference studentData = FirebaseDatabase.getInstance().getReference("Students");
+    DatabaseReference studentData = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onBindViewHolder(@NonNull attendanceViewHolder holder, int position, @NonNull StudentHostelModel model) {
         final String[] purl = new String[1];
         final String[] name = new String[1];
         holder.userId.setText(model.getId());
-        studentData.child(Objects.requireNonNull(getRef(position).getKey())).addListenerForSingleValueEvent(new ValueEventListener() {
+        studentData.child("Students").child(Objects.requireNonNull(getRef(position).getKey())).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -67,6 +67,14 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<StudentHostelMode
 
             }
         });
+        holder.attendanceGroup.setOnCheckedChangeListener((radioGroup, i) -> {
+            RadioButton selectedOptionAttendance = radioGroup.findViewById(i);
+            holder.attendanceMotionLayout.setProgress(0);
+            HashMap<String,Object> attendanceMap = new HashMap<>();
+            attendanceMap.put(Objects.requireNonNull(getRef(holder.getAbsoluteAdapterPosition()).getKey()),selectedOptionAttendance.getText());
+            studentData.child("Attendance").child(UserAttendance.todaysDateFormatter("YYYY-MM-dd")).updateChildren(attendanceMap)
+                    .addOnSuccessListener(success-> new Handler().postDelayed(()-> holder.attendanceMotionLayout.transitionToEnd(),1000));
+        });
 
     }
 
@@ -83,6 +91,7 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<StudentHostelMode
         CircleImageView userProfile;
         TextView userName,userId;
         RadioGroup attendanceGroup;
+        MotionLayout attendanceMotionLayout;
 
         public attendanceViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,6 +99,8 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<StudentHostelMode
             userName = itemView.findViewById(R.id.attendance_user_name);
             userId = itemView.findViewById(R.id.attendance_user_id);
             attendanceGroup = itemView.findViewById(R.id.attendance_radio_group);
+            attendanceMotionLayout = itemView.findViewById(R.id.attendanceMotionLayout);
+
         }
     }
 }

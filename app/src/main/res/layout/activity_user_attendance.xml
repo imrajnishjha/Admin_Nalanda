@@ -64,34 +64,75 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:id="@+id/attendanceRV"
+        android:visibility="gone"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
+        android:elevation="5dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/attendance_text"
         app:layout_constraintBottom_toTopOf="@id/attendance_submit_btn"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/AttendanceTakenText"
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:elevation="5dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:gravity="center|top"
+        android:padding="10dp"
+        android:text="@string/attendance_has_been_already_taken"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintTop_toBottomOf="@id/attendance_text"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/attendance_loading_progressBarRL"
+        android:padding="10dp"
+        android:background="@drawable/circular_progress_bar"
+        android:elevation="8dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/attendance_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ProgressBar
+            android:id="@+id/attendance_view_progressBar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true" />
+
+    </RelativeLayout>
+
+
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/attendance_submit_btn"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:id="@+id/attendance_submit_btn"
         android:layout_margin="10dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/no_border_curve"
-        android:text="Submit"
-        android:textColor="@color/black"
-        android:elevation="6dp"
         android:backgroundTint="@color/light_blue_more"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:gravity="center"
+        android:elevation="6dp"
         android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:paddingStart="15dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="5dp"
+        android:text="Submit"
         android:textAllCaps="false"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/attendanceRV"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

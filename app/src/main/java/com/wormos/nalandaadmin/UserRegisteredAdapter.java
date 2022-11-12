@@ -4,10 +4,12 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
@@ -36,23 +38,26 @@ public class UserRegisteredAdapter extends FirebaseRecyclerAdapter<UserRegistere
     public UserRegisteredAdapter(@NonNull FirebaseRecyclerOptions<UserRegisteredModel> options) {
         super(options);
     }
-    DatabaseReference studentData = FirebaseDatabase.getInstance().getReference("Students");
+    DatabaseReference studentData = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onBindViewHolder(@NonNull UserRegisteredViewHolder holder, int position, @NonNull UserRegisteredModel model) {
         holder.userId.setText(model.getId());
+        final String[] hostelName = new String[1];
 
-        studentData.child(Objects.requireNonNull(getRef(position).getKey())).addListenerForSingleValueEvent(new ValueEventListener() {
+        studentData.child("Students").child(Objects.requireNonNull(getRef(position).getKey())).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     String purl = Objects.requireNonNull(snapshot.child("purl").getValue()).toString();
                     String name = Objects.requireNonNull(snapshot.child("name").getValue()).toString();
+                    hostelName[0] = Objects.requireNonNull(snapshot.child("hostel").getValue()).toString();
                     holder.userName.setText(name);
                     Glide.with(holder.userProfile.getContext())
                             .load(purl)
                             .error(R.drawable.nalanda_logo)
                             .into(holder.userProfile);
+
                 }
             }
             @Override
@@ -60,6 +65,7 @@ public class UserRegisteredAdapter extends FirebaseRecyclerAdapter<UserRegistere
 
             }
         });
+
         holder.removeBtn.setOnClickListener(view -> {
             Dialog confirmationDialog = new Dialog(view.getContext());
             @SuppressLint("InflateParams") View v = LayoutInflater.from(view.getContext()).inflate(R.layout.are_you_sure_popup,null,false);
@@ -74,7 +80,19 @@ public class UserRegisteredAdapter extends FirebaseRecyclerAdapter<UserRegistere
             );
 
             yesBtn.setOnClickListener(yesView->{
-
+                confirmationDialog.setCancelable(false);
+                studentData.child("Students").child(Objects.requireNonNull(getRef(position).getKey())).removeValue()
+                        .addOnSuccessListener(success-> studentData.child("Hostel").child(hostelName[0])
+                                .child(Objects.requireNonNull(getRef(position).getKey()))
+                                .removeValue()
+                                .addOnSuccessListener(removalSuccess->confirmationDialog.dismiss())
+                                .addOnFailureListener(failure->{
+                                    Toast.makeText(view.getContext(), "Please try again", Toast.LENGTH_SHORT).show();
+                                    confirmationDialog.dismiss();
+                                })).addOnFailureListener(failure->{
+                            Toast.makeText(view.getContext(), "Please try again", Toast.LENGTH_SHORT).show();
+                            confirmationDialog.dismiss();
+                        });
             });
 
         });

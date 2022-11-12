@@ -1,15 +1,24 @@
 package com.wormos.nalandaadmin;
 
 public class UserRegisteredModel {
-    String id,purl,name;
+    String id,purl,name,hostel;
 
-    public UserRegisteredModel(String id, String purl, String name) {
+    public UserRegisteredModel(String id, String purl, String name, String hostel) {
         this.id = id;
         this.purl = purl;
         this.name = name;
+        this.hostel = hostel;
     }
 
     public UserRegisteredModel() {
+    }
+
+    public String getHostel() {
+        return hostel;
+    }
+
+    public void setHostel(String hostel) {
+        this.hostel = hostel;
     }
 
     public String getId() {

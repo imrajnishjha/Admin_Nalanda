@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="7dp"
+    android:background="@drawable/curve_with_whitebackground">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_lunch_user_profile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/chat_profile"
+        app:civ_border_color="@color/black"
+        app:civ_border_width="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/user_lunch_user_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@id/user_lunch_ll"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Manish"
+        android:gravity="start|center"
+        android:textColor="#4A4A4A"
+        app:layout_constraintBottom_toTopOf="@id/user_lunch_user_id"
+        app:layout_constraintStart_toEndOf="@id/user_lunch_user_profile"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/user_lunch_user_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="#22192034"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:gravity="start|center"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/user_lunch_ll"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/user_lunch_user_profile"
+        app:layout_constraintTop_toBottomOf="@id/user_lunch_user_name" />
+
+    <LinearLayout
+        android:id="@+id/user_lunch_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="7dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/user_lunch_collegeName"
+            android:text="Remove"
+            android:layout_marginEnd="10dp"
+            android:textSize="11sp"
+            android:textColor="@color/black"
+            android:elevation="6dp"
+            android:backgroundTint="#ED5353"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_regular"
+            android:textAllCaps="false"
+            tools:ignore="HardcodedText,SmallSp" />
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

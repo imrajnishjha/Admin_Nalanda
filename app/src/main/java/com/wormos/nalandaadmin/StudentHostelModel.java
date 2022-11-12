@@ -3,6 +3,7 @@ package com.wormos.nalandaadmin;
 public class StudentHostelModel {
     String id;
 
+
     public StudentHostelModel(String id) {
         this.id = id;
     }

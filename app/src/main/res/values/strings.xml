@@ -20,6 +20,7 @@
     <string name="what_s_happening">What\'s Happening</string>
     <string name="dashboarda">"User Attendance"</string>
     <string name="attendance_has_been_already_taken">Attendance has been already taken</string>
+    <string name="total_no_of_student">Total no of Student -</string>
 
     <string-array name="male_female_str_array">
         <item>Select Gender</item>

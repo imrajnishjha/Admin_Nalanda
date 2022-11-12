@@ -7,7 +7,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -70,9 +69,9 @@ public class UserRegisteredAdapter extends FirebaseRecyclerAdapter<UserRegistere
             confirmationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             confirmationDialog.show();
 
-            noBtn.setOnClickListener(noView->{
-                confirmationDialog.dismiss();
-            });
+            noBtn.setOnClickListener(noView->
+                confirmationDialog.dismiss()
+            );
 
             yesBtn.setOnClickListener(yesView->{
 

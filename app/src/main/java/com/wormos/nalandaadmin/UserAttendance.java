@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -99,9 +98,7 @@ public class UserAttendance extends AppCompatActivity {
                                     attendanceRV.setVisibility(View.GONE);
                                     attendanceTakenTV.setVisibility(View.VISIBLE);
                                     attendanceSubmitBtn.setVisibility(View.GONE);
-                                }).addOnFailureListener(failure ->{
-                                    Toast.makeText(UserAttendance.this, "Please try again", Toast.LENGTH_SHORT).show();
-                                });
+                                }).addOnFailureListener(failure -> Toast.makeText(UserAttendance.this, "Please try again", Toast.LENGTH_SHORT).show());
                             } else{
                                 progressBar.setVisibility(View.GONE);
                                 Toast.makeText(UserAttendance.this, "Please mark all student", Toast.LENGTH_SHORT).show();

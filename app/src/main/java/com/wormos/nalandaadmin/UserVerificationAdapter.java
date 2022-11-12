@@ -1,9 +1,17 @@
 package com.wormos.nalandaadmin;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
@@ -12,12 +20,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -33,30 +40,119 @@ public class UserVerificationAdapter extends FirebaseRecyclerAdapter<UserVerific
     public UserVerificationAdapter(@NonNull FirebaseRecyclerOptions<UserVerificationModel> options) {
         super(options);
     }
-    DatabaseReference studentData = FirebaseDatabase.getInstance().getReference("Students");
+
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
 
     @Override
     protected void onBindViewHolder(@NonNull userVerificationViewHolder holder, int position, @NonNull UserVerificationModel model) {
         holder.userId.setText(model.getId());
 
-        studentData.child(Objects.requireNonNull(getRef(position).getKey())).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    String purl = Objects.requireNonNull(snapshot.child("purl").getValue()).toString();
-                    String name = Objects.requireNonNull(snapshot.child("name").getValue()).toString();
-                    holder.userName.setText(name);
-                    Glide.with(holder.userProfile.getContext())
-                            .load(purl)
-                            .error(R.drawable.nalanda_logo)
-                            .into(holder.userProfile);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        holder.userName.setText(model.getName());
+        Glide.with(holder.userProfile.getContext())
+                .load(model.getPurl())
+                .error(R.drawable.defaultprofile2)
+                .into(holder.userProfile);
+        holder.rejectBtn.setOnClickListener(view -> {
+            Dialog confirmationDialog = new Dialog(view.getContext());
+            @SuppressLint("InflateParams") View v = LayoutInflater.from(view.getContext()).inflate(R.layout.are_you_sure_popup,null,false);
+            TextView yesBtn = v.findViewById(R.id.yesbtn);
+            TextView noBtn = v.findViewById(R.id.nobtn);
+            confirmationDialog.setContentView(v);
+            confirmationDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            confirmationDialog.show();
 
-            }
+            noBtn.setOnClickListener(noView-> confirmationDialog.dismiss());
+
+            yesBtn.setOnClickListener(yesView-> databaseReference.child("New Registration").child("Chanakaya")
+                    .child(Objects.requireNonNull(getRef(holder.getAbsoluteAdapterPosition()).getKey())).removeValue()
+                    .addOnSuccessListener(success->confirmationDialog.dismiss()));
         });
+
+        holder.approveBtn.setOnClickListener(view -> {
+
+            Dialog submissionDialog = new Dialog(view.getContext());
+            @SuppressLint("InflateParams") View submissionView = LayoutInflater.from(view.getContext()).inflate(R.layout.room_no_and_enter_password_popup,
+                    null,
+                    false);
+            TextView infoTv = submissionView.findViewById(R.id.infoTV);
+            EditText infoEdt = submissionView.findViewById(R.id.infoEdt);
+            TextView infoSubmitBtn = submissionView.findViewById(R.id.infoSubmitBtn);
+            infoTv.setVisibility(View.GONE);
+            infoEdt.setHint("Enter Room No");
+            submissionDialog.setContentView(submissionView);
+            submissionDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            submissionDialog.show();
+
+            infoSubmitBtn.setOnClickListener(v->{
+                if(infoEdt.getText().toString().isEmpty()){
+                    infoEdt.setError("Enter RoomNo");
+                    infoEdt.requestFocus();
+                } else {
+                    String roomNo = infoEdt.getText().toString();
+                    submissionDialog.dismiss();
+                    Dialog passwordDialog = new Dialog(view.getContext());
+                    @SuppressLint("InflateParams") View passwordView = LayoutInflater.from(view.getContext()).inflate(R.layout.room_no_and_enter_password_popup,
+                            null,false);
+                    TextView infoPasswordTv = passwordView.findViewById(R.id.infoTV);
+                    EditText infoPasswordEdt = passwordView.findViewById(R.id.infoEdt);
+                    TextView infoPasswordBtn = passwordView.findViewById(R.id.infoSubmitBtn);
+                    String adminMail= Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
+                    infoPasswordTv.setText(adminMail);
+                    infoPasswordEdt.setInputType(InputType.TYPE_CLASS_TEXT);
+                    passwordDialog.setContentView(passwordView);
+                    passwordDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    passwordDialog.show();
+
+                    infoPasswordBtn.setOnClickListener(passView->{
+                        if(infoPasswordEdt.getText().toString().isEmpty()){
+                            infoPasswordEdt.setError("Enter Password");
+                            infoPasswordEdt.requestFocus();
+                        } else {
+                            String password = infoPasswordEdt.getText().toString();
+                            assert adminMail != null;
+                            mAuth.signInWithEmailAndPassword(adminMail,password).addOnSuccessListener(loginSuccess->{
+                                passwordDialog.setCancelable(false);
+                                HashMap<String,Object> studentDataMap = new HashMap<>();
+                                studentDataMap.put("id",model.getId());
+                                studentDataMap.put("name",model.getName());
+                                studentDataMap.put("email",model.getEmail());
+                                studentDataMap.put("purl",model.getPurl());
+                                studentDataMap.put("address",model.getAddress());
+                                studentDataMap.put("city",model.getCity());
+                                studentDataMap.put("gender",model.getGender());
+                                studentDataMap.put("hostel",model.getHostel());
+                                studentDataMap.put("phoneNo",model.getPhoneNo());
+                                studentDataMap.put("state",model.getState());
+                                studentDataMap.put("university",model.getUniversity());
+                                studentDataMap.put("room_type",UserVerification.sharingType(model.getSeater()));
+                                studentDataMap.put("room_no",Integer.parseInt(roomNo));
+                                databaseReference.child("Students").child(model.getEmail().replaceAll("\\.","%7"))
+                                        .updateChildren(studentDataMap).addOnSuccessListener(success-> mAuth.createUserWithEmailAndPassword(model.getEmail().toLowerCase(),"nalanda@123")
+                                                .addOnSuccessListener(createSuccess->{
+                                                    Log.d("ukri3", "onBindViewHolder: "+adminMail+" "+password);
+                                                    mAuth.signInWithEmailAndPassword(adminMail,password);
+                                                    databaseReference.child("New Registration").child("Chanakaya")
+                                                            .child(Objects.requireNonNull(getRef(position).getKey()).toLowerCase()).removeValue()
+                                                            .addOnSuccessListener(reLoginSuccess-> passwordDialog.dismiss());
+                                                    Log.d("ukri", "onBindViewHolder: "+mAuth.getCurrentUser().getEmail()+" "+(getRef(holder.getAbsoluteAdapterPosition()).getKey()));
+                                                })).addOnFailureListener(failure->{
+                                            Toast.makeText(view.getContext(), "Please try agian", Toast.LENGTH_SHORT).show();
+                                            passwordDialog.dismiss();
+                                        });
+                            }).addOnFailureListener(failure->{
+                                infoPasswordEdt.setError("Enter correct Password");
+                                infoPasswordEdt.requestFocus();
+                            });
+
+                        }
+                    });
+                }
+            });
+
+        });
+
     }
 
     @NonNull

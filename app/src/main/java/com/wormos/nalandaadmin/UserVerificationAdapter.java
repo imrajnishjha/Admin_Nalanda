@@ -133,13 +133,13 @@ public class UserVerificationAdapter extends FirebaseRecyclerAdapter<UserVerific
                                 studentDataMap.put("university",model.getUniversity());
                                 studentDataMap.put("room_type",UserVerification.sharingType(model.getSeater()));
                                 studentDataMap.put("room_no",Integer.parseInt(roomNo));
-                                databaseReference.child("Students").child(model.getEmail().replaceAll("\\.","%7"))
+                                databaseReference.child("Students").child(model.getEmail().replaceAll("\\.","%7").toLowerCase())
                                         .updateChildren(studentDataMap).addOnSuccessListener(success->
                                                 mAuth.createUserWithEmailAndPassword(model.getEmail().toLowerCase(),"nalanda@123")
                                                 .addOnSuccessListener(createSuccess->{
                                                     mAuth.signInWithEmailAndPassword(adminMail,password);
                                                     databaseReference.child("New Registration").child(model.getHostel())
-                                                            .child(Objects.requireNonNull(getRef(position).getKey()).toLowerCase()).removeValue()
+                                                            .child(Objects.requireNonNull(getRef(position).getKey())).removeValue()
                                                             .addOnSuccessListener(reLoginSuccess-> {
                                                                 HashMap<String,Object> hostelUserMap = new HashMap<>();
                                                                 hostelUserMap.put("id",model.getId());

@@ -129,7 +129,6 @@ public class dashboard_fragment extends Fragment {
             String key = storyRef.push().getKey();
             HashMap<String,Object> storyMap = new HashMap<>();
             storyMap.put("videoPurl",uri.toString());
-            storyMap.put("thumbnail",uri.toString());
             assert key != null;
             storyRef.child(key).updateChildren(storyMap).addOnSuccessListener(successRef-> dialog.dismiss());
         }));

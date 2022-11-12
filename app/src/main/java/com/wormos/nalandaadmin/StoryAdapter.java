@@ -27,7 +27,7 @@ public class StoryAdapter extends FirebaseRecyclerAdapter<StoryModel,StoryAdapte
     @Override
     protected void onBindViewHolder(@NonNull storyViewHolder holder, int position, @NonNull StoryModel model) {
         Glide.with(holder.storyThumbnail.getContext())
-                .load(model.getThumbnail())
+                .load(model.getVideoPurl())
                 .error(R.drawable.nalanda_bed_logo)
                 .into(holder.storyThumbnail);
 

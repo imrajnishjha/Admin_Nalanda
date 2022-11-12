@@ -63,6 +63,7 @@
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/drawable/button_style_more_curve.xml" value="0.1455" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/drawable/circular_progress_bar.xml" value="0.1455" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/drawable/curve_with_whitebackground.xml" value="0.1455" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/drawable/motion_layout_toggle_bg.xml" value="0.139" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/drawable/my_radio_btn.xml" value="0.1455" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/drawable/no_boder_black.xml" value="0.1455" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/drawable/no_border_curve.xml" value="0.2105" />
@@ -87,7 +88,7 @@
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/dashboard_option_item.xml" value="0.22" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/fragment_dashboard_fragment.xml" value="0.33" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/fragment_explore_fragment.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/fragment_food_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/fragment_food_fragment.xml" value="0.25" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/fragment_my_room_fragment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/fragment_refer_fragment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/highlight_item.xml" value="0.33" />
@@ -98,8 +99,10 @@
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/spinner_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/story_item.xml" value="0.203125" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/transport_schedule_item.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/user_lunch_item.xml" value="0.33" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/user_registration_item.xml" value="0.33" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/user_verification_item.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/menu/bottom_navigation.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/xml/provider_paths.xml" value="0.203125" />
       </map>
     </option>

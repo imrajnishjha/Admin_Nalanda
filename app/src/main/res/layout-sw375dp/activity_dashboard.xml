@@ -41,7 +41,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
-        android:src="@drawable/chat_profile"
+        android:src="@drawable/defaultprofile2"
         app:civ_border_color="@color/black"
         app:civ_border_width="1dp"
         app:layout_constraintStart_toStartOf="parent"

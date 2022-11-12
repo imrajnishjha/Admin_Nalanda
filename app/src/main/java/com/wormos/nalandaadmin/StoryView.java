@@ -46,9 +46,8 @@ public class StoryView extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String videoPurlStr = Objects.requireNonNull(snapshot.child("videoPurl").getValue()).toString();
-                String thumbnailStr = Objects.requireNonNull(snapshot.child("thumbnail").getValue()).toString();
                 Glide.with(getApplicationContext())
-                        .load(thumbnailStr)
+                        .load(videoPurlStr)
                         .error(R.drawable.nalanda_bed_logo)
                         .into(thumbnailView);
                 playStory(videoPurlStr,storyView,thumbnailView,storyLoadProgress);

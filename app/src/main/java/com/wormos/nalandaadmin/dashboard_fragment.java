@@ -27,7 +27,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -101,12 +103,13 @@ public class dashboard_fragment extends Fragment {
             addStoryDialog.show();
             selectStory = addStoryView.findViewById(R.id.select_video_story);
             TextView uploadStory = addStoryView.findViewById(R.id.uploadStoryTV);
+            RelativeLayout storyUploadProgressBar = addStoryView.findViewById(R.id.story_upload_progressBarRL);
             selectStory.setOnClickListener(storyView ->{
                 chooseVideo();
             });
 
             uploadStory.setOnClickListener(uploadView ->{
-                UploadStorytoFirebase(addStoryDialog);
+                UploadStorytoFirebase(addStoryDialog,storyUploadProgressBar);
             });
 
         });
@@ -122,16 +125,21 @@ public class dashboard_fragment extends Fragment {
         return view;
     }
 
-    private void UploadStorytoFirebase(Dialog dialog) {
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference("/Stories");
+    private void UploadStorytoFirebase(Dialog dialog,RelativeLayout progressBar) {
+        DatabaseReference storyRef = FirebaseDatabase.getInstance().getReference("Stories");
+        String key = storyRef.push().getKey();
+        progressBar.setVisibility(View.VISIBLE);
+        dialog.setCancelable(false);
+        assert key != null;
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference("Stories").child(key);
         storageRef.putFile(videoUri).addOnSuccessListener(success-> storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-            DatabaseReference storyRef = FirebaseDatabase.getInstance().getReference("Stories");
-            String key = storyRef.push().getKey();
             HashMap<String,Object> storyMap = new HashMap<>();
             storyMap.put("videoPurl",uri.toString());
-            assert key != null;
-            storyRef.child(key).updateChildren(storyMap).addOnSuccessListener(successRef-> dialog.dismiss());
-        }));
+            storyRef.child(key).updateChildren(storyMap).addOnSuccessListener(successRef-> dialog.dismiss()).addOnFailureListener(failure->dialog.dismiss());
+        })).addOnFailureListener(failure->{
+            dialog.dismiss();
+            Toast.makeText(view.getContext(), "Please try again", Toast.LENGTH_SHORT).show();
+        });
     }
 
     public void chooseVideo(){

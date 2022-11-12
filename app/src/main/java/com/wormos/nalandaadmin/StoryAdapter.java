@@ -32,7 +32,7 @@ public class StoryAdapter extends FirebaseRecyclerAdapter<StoryModel,StoryAdapte
                 .into(holder.storyThumbnail);
 
         holder.view.setOnClickListener(v->{
-            v.getContext().startActivity(new Intent(v.getContext(),StoryView.class).putExtra("storyKey",getRef(position).getKey()));
+            v.getContext().startActivity(new Intent(v.getContext(),StoryView.class).putExtra("storyKey",getRef(holder.getAbsoluteAdapterPosition()).getKey()));
         });
 
 

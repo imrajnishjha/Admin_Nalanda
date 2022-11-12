@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -98,6 +99,7 @@ public class UserVerificationAdapter extends FirebaseRecyclerAdapter<UserVerific
                     TextView infoPasswordTv = passwordView.findViewById(R.id.infoTV);
                     EditText infoPasswordEdt = passwordView.findViewById(R.id.infoEdt);
                     TextView infoPasswordBtn = passwordView.findViewById(R.id.infoSubmitBtn);
+                    RelativeLayout infoProgressBar = passwordView.findViewById(R.id.reg_upload_progressBarRL);
                     String adminMail= Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
                     infoPasswordTv.setText(adminMail);
                     infoPasswordEdt.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -106,14 +108,17 @@ public class UserVerificationAdapter extends FirebaseRecyclerAdapter<UserVerific
                     passwordDialog.show();
 
                     infoPasswordBtn.setOnClickListener(passView->{
+                        infoProgressBar.setVisibility(View.VISIBLE);
                         if(infoPasswordEdt.getText().toString().isEmpty()){
                             infoPasswordEdt.setError("Enter Password");
                             infoPasswordEdt.requestFocus();
+                            infoProgressBar.setVisibility(View.GONE);
                         } else {
                             String password = infoPasswordEdt.getText().toString();
                             assert adminMail != null;
                             mAuth.signInWithEmailAndPassword(adminMail,password).addOnSuccessListener(loginSuccess->{
                                 passwordDialog.setCancelable(false);
+
                                 HashMap<String,Object> studentDataMap = new HashMap<>();
                                 studentDataMap.put("id",model.getId());
                                 studentDataMap.put("name",model.getName());
@@ -129,21 +134,30 @@ public class UserVerificationAdapter extends FirebaseRecyclerAdapter<UserVerific
                                 studentDataMap.put("room_type",UserVerification.sharingType(model.getSeater()));
                                 studentDataMap.put("room_no",Integer.parseInt(roomNo));
                                 databaseReference.child("Students").child(model.getEmail().replaceAll("\\.","%7"))
-                                        .updateChildren(studentDataMap).addOnSuccessListener(success-> mAuth.createUserWithEmailAndPassword(model.getEmail().toLowerCase(),"nalanda@123")
+                                        .updateChildren(studentDataMap).addOnSuccessListener(success->
+                                                mAuth.createUserWithEmailAndPassword(model.getEmail().toLowerCase(),"nalanda@123")
                                                 .addOnSuccessListener(createSuccess->{
-                                                    Log.d("ukri3", "onBindViewHolder: "+adminMail+" "+password);
                                                     mAuth.signInWithEmailAndPassword(adminMail,password);
-                                                    databaseReference.child("New Registration").child("Chanakaya")
+                                                    databaseReference.child("New Registration").child(model.getHostel())
                                                             .child(Objects.requireNonNull(getRef(position).getKey()).toLowerCase()).removeValue()
-                                                            .addOnSuccessListener(reLoginSuccess-> passwordDialog.dismiss());
-                                                    Log.d("ukri", "onBindViewHolder: "+mAuth.getCurrentUser().getEmail()+" "+(getRef(holder.getAbsoluteAdapterPosition()).getKey()));
-                                                })).addOnFailureListener(failure->{
-                                            Toast.makeText(view.getContext(), "Please try agian", Toast.LENGTH_SHORT).show();
+                                                            .addOnSuccessListener(reLoginSuccess-> {
+                                                                HashMap<String,Object> hostelUserMap = new HashMap<>();
+                                                                hostelUserMap.put("id",model.getId());
+                                                                databaseReference.child("Hostel").child(model.getHostel())
+                                                                        .child(model.getEmail().replaceAll("\\.","%7"))
+                                                                        .updateChildren(hostelUserMap).addOnSuccessListener(hostelMapSuccess->passwordDialog.dismiss());
+                                                            });
+                                                }).addOnFailureListener(failure->{
+                                                            Toast.makeText(view.getContext(), "Please try again", Toast.LENGTH_SHORT).show();
+                                                            passwordDialog.dismiss();
+                                                        })).addOnFailureListener(failure->{
+                                            Toast.makeText(view.getContext(), "Please try again", Toast.LENGTH_SHORT).show();
                                             passwordDialog.dismiss();
                                         });
                             }).addOnFailureListener(failure->{
                                 infoPasswordEdt.setError("Enter correct Password");
                                 infoPasswordEdt.requestFocus();
+                                infoProgressBar.setVisibility(View.GONE);
                             });
 
                         }

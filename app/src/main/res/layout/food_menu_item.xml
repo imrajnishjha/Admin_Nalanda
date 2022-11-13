@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:elevation="0dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/mess_time"
+            android:layout_weight="1111"
+            android:textColor="@color/text_grey"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/poppins_regular"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/food_menu_item_edit_cv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="4dp"
+            app:cardBackgroundColor="#2D6BC8"
+            app:contentPaddingLeft="8dp"
+            app:contentPaddingRight="8dp"
+            app:cardCornerRadius="8dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="end"
+                android:orientation="horizontal"
+                tools:ignore="UseCompoundDrawables">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:padding="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/editing_icon"
+                    android:importantForAccessibility="no"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/food_menu_save_edit_btn_txt"
+                    android:text="@string/edit"
+                    android:layout_gravity="center"
+                    android:paddingStart="6dp"
+                    android:paddingEnd="7dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="35dp"
+                style="@style/Platform.MaterialComponents.Light"
+                android:id="@+id/food_item_sidedash"
+                android:background="#A62A9D8F"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:backgroundTint="@color/white"
+                android:layout_marginBottom="2dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="25dp"
+                app:cardCornerRadius="8dp">
+
+                <TextView
+                    android:layout_width="5dp"
+                    android:id="@+id/food_item_sidebar"
+                    android:layout_height="match_parent"
+                    android:background="#2A9D8F"/>
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:id="@+id/food_menu_list"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:background="#662A9D8F"
+                    android:focusableInTouchMode="false"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="6dp"
+                    android:paddingEnd="5dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

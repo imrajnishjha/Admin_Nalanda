@@ -2,6 +2,8 @@ package com.wormos.nalandaadmin;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.text.InputType;
@@ -38,8 +40,11 @@ public class UserVerificationAdapter extends FirebaseRecyclerAdapter<UserVerific
      * {@link FirebaseRecyclerOptions} for configuration options.
      *
      */
-    public UserVerificationAdapter(@NonNull FirebaseRecyclerOptions<UserVerificationModel> options) {
+    Context mContext;
+
+    public UserVerificationAdapter(@NonNull FirebaseRecyclerOptions<UserVerificationModel> options, Context mContext) {
         super(options);
+        this.mContext = mContext;
     }
 
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -48,6 +53,8 @@ public class UserVerificationAdapter extends FirebaseRecyclerAdapter<UserVerific
 
     @Override
     protected void onBindViewHolder(@NonNull userVerificationViewHolder holder, int position, @NonNull UserVerificationModel model) {
+        SharedPreferences adminHostel = mContext.getSharedPreferences("adminHostel", Context.MODE_PRIVATE);
+        String hostelName = adminHostel.getString("hostelName"," ");
         holder.userId.setText(model.getId());
 
         holder.userName.setText(model.getName());
@@ -66,7 +73,7 @@ public class UserVerificationAdapter extends FirebaseRecyclerAdapter<UserVerific
 
             noBtn.setOnClickListener(noView-> confirmationDialog.dismiss());
 
-            yesBtn.setOnClickListener(yesView-> databaseReference.child("New Registration").child("Chanakaya")
+            yesBtn.setOnClickListener(yesView-> databaseReference.child("New Registration").child(hostelName)
                     .child(Objects.requireNonNull(getRef(holder.getAbsoluteAdapterPosition()).getKey())).removeValue()
                     .addOnSuccessListener(success->confirmationDialog.dismiss()));
         });

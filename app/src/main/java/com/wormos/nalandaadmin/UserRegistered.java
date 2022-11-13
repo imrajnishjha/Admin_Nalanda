@@ -5,6 +5,8 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -22,6 +24,9 @@ public class UserRegistered extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_registered);
 
+        SharedPreferences adminHostel = getApplicationContext().getSharedPreferences("adminHostel", Context.MODE_PRIVATE);
+        String hostelName = adminHostel.getString("hostelName"," ");
+
         registeredUserBackBtn = findViewById(R.id.registered_user_back_btn);
         registeredUserBackBtn.setOnClickListener(view -> finish());
 
@@ -29,7 +34,7 @@ public class UserRegistered extends AppCompatActivity {
         registeredUserRV = findViewById(R.id.registeredUserRV);
         registeredUserRV.setLayoutManager(new LinearLayoutManager(this));
         options = new FirebaseRecyclerOptions.Builder<UserRegisteredModel>()
-                .setQuery(FirebaseDatabase.getInstance().getReference("Hostel").child("Chanakaya"), UserRegisteredModel.class)
+                .setQuery(FirebaseDatabase.getInstance().getReference("Hostel").child(hostelName), UserRegisteredModel.class)
                 .build();
         userRegisteredAdapter = new UserRegisteredAdapter(options);
         registeredUserRV.setAdapter(userRegisteredAdapter);

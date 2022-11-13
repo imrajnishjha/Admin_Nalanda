@@ -1,5 +1,7 @@
 package com.wormos.nalandaadmin;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,14 +38,19 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<StudentHostelMode
      * {@link FirebaseRecyclerOptions} for configuration options.
      *
      */
+    Context mContext;
 
-    public AttendanceAdapter(@NonNull FirebaseRecyclerOptions<StudentHostelModel> options) {
+    public AttendanceAdapter(@NonNull FirebaseRecyclerOptions<StudentHostelModel> options, Context mContext) {
         super(options);
+        this.mContext = mContext;
     }
+
     DatabaseReference studentData = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onBindViewHolder(@NonNull attendanceViewHolder holder, int position, @NonNull StudentHostelModel model) {
+        SharedPreferences adminHostel = mContext.getSharedPreferences("adminHostel", Context.MODE_PRIVATE);
+        String hostelName = adminHostel.getString("hostelName"," ");
         final String[] purl = new String[1];
         final String[] name = new String[1];
         holder.userId.setText(model.getId());
@@ -72,7 +79,7 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<StudentHostelMode
             holder.attendanceMotionLayout.setProgress(0);
             HashMap<String,Object> attendanceMap = new HashMap<>();
             attendanceMap.put(Objects.requireNonNull(getRef(holder.getAbsoluteAdapterPosition()).getKey()),selectedOptionAttendance.getText());
-            studentData.child("Attendance").child(UserAttendance.todaysDateFormatter("YYYY-MM-dd")).updateChildren(attendanceMap)
+            studentData.child("Attendance").child(hostelName).child(UserAttendance.todaysDateFormatter("YYYY-MM-dd")).updateChildren(attendanceMap)
                     .addOnSuccessListener(success-> new Handler().postDelayed(()-> holder.attendanceMotionLayout.transitionToEnd(),1000));
         });
 

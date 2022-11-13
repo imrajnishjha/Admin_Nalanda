@@ -38,16 +38,16 @@ public class Dashboard extends AppCompatActivity {
                 case 2131362046:
                     transaction.replace(R.id.dashboard_fragment_holder, new food_fragment());
                     break;
-                case 2131362231:
+                case 2131362242:
                     transaction.replace(R.id.dashboard_fragment_holder, new my_room_fragment());
                     break;
-                case 2131361963:
+                case 2131361968:
                     transaction.replace(R.id.dashboard_fragment_holder, new dashboard_fragment());
                     break;
-                case 2131362020:
+                case 2131362025:
                     transaction.replace(R.id.dashboard_fragment_holder, new explore_fragment());
                     break;
-                case 2131362217:
+                case 2131362227:
                     transaction.replace(R.id.dashboard_fragment_holder, new refer_fragment());
                     break;
             }

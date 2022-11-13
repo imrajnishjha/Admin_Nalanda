@@ -1,15 +1,27 @@
 package com.wormos.nalandaadmin;
 
+
+
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 
 public class UserLogin extends AppCompatActivity {
 
@@ -18,6 +30,7 @@ public class UserLogin extends AppCompatActivity {
     EditText loginUsernameEdtTxt, loginPasswordEdtTxt;
     FirebaseAuth mAuth;
     ProgressDialog loginProgress;
+    DatabaseReference adminRefs = FirebaseDatabase.getInstance().getReference("Admin");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +69,27 @@ public class UserLogin extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(userEmail, password).addOnSuccessListener(authResult -> {
                 Toast.makeText(getApplicationContext(), "You are logged in!", Toast.LENGTH_SHORT).show();
                 loginProgress.dismiss();
-                startActivity(new Intent(UserLogin.this, Dashboard.class));
+                String userEmailConverted= Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail()).replaceAll("\\.","%7");;
+                adminRefs.child(userEmailConverted).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            String hostelName= Objects.requireNonNull(snapshot.child("hostel").getValue()).toString();
+                            SharedPreferences adminHostel = getApplicationContext().getSharedPreferences("adminHostel", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor adminHostelEditor = adminHostel.edit();
+                            adminHostelEditor.putString("hostelName",hostelName);
+                            adminHostelEditor.apply();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                startActivity(new Intent(UserLogin.this, Dashboard.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                finish();
             }).addOnFailureListener(e -> {
                 loginProgress.dismiss();
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();

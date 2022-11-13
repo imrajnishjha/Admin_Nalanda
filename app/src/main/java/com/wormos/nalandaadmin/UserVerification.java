@@ -7,6 +7,8 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -24,19 +26,22 @@ public class UserVerification extends AppCompatActivity {
     RecyclerView verificationRV;
     UserVerificationAdapter userVerificationAdapter;
     FirebaseRecyclerOptions<UserVerificationModel> options;
-    DatabaseReference newRegRef = FirebaseDatabase.getInstance().getReference("New Registration").child("Chanakaya");
+    DatabaseReference newRegRef = FirebaseDatabase.getInstance().getReference("New Registration");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_verification);
 
+        SharedPreferences adminHostel = getApplicationContext().getSharedPreferences("adminHostel", Context.MODE_PRIVATE);
+        String hostelName = adminHostel.getString("hostelName"," ");
+
         verificationBackBtn = findViewById(R.id.verification_user_back_btn);
         verificationBackBtn.setOnClickListener(view -> finish());
 
         //no if new Registration
         noOfNewStudentTv = findViewById(R.id.verification_user_text);
-        newRegRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        newRegRef.child(hostelName).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 long newRegCount = snapshot.getChildrenCount();
@@ -54,9 +59,9 @@ public class UserVerification extends AppCompatActivity {
         verificationRV = findViewById(R.id.verificationUserRV);
         verificationRV.setLayoutManager(new LinearLayoutManager(this));
         options = new FirebaseRecyclerOptions.Builder<UserVerificationModel>()
-                .setQuery(newRegRef, UserVerificationModel.class)
+                .setQuery(newRegRef.child(hostelName), UserVerificationModel.class)
                 .build();
-        userVerificationAdapter = new UserVerificationAdapter(options);
+        userVerificationAdapter = new UserVerificationAdapter(options,getApplicationContext());
         verificationRV.setAdapter(userVerificationAdapter);
 
     }

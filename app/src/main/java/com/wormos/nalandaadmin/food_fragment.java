@@ -1,5 +1,7 @@
 package com.wormos.nalandaadmin;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,7 +29,7 @@ import java.util.Objects;
 public class food_fragment extends Fragment {
 
     View view;
-    TextView lunchCount;
+    TextView lunchCountTv;
     RecyclerView lunchRv;
     MotionLayout addLunchToggleBtn;
     FirebaseRecyclerOptions<StudentHostelModel> options;
@@ -46,12 +48,15 @@ public class food_fragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_food_fragment, container, false);
 
-        lunchCount = view.findViewById(R.id.food_lunch_count);
+        SharedPreferences adminHostel = requireContext().getSharedPreferences("adminHostel", Context.MODE_PRIVATE);
+        String hostelName = adminHostel.getString("hostelName"," ");
+
+        lunchCountTv = view.findViewById(R.id.food_lunch_count);
         addLunchToggleBtn = view.findViewById(R.id.food_open_lunch_motion_animation);
 
 
     //Checking the initial condition of toggle Button
-        lunchDataRef.child("Chanakaya").addListenerForSingleValueEvent(new ValueEventListener() {
+        lunchDataRef.child(hostelName).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -70,7 +75,7 @@ public class food_fragment extends Fragment {
                     HashMap<String,Object> lunchAvailableMap = new HashMap<>();
                     lunchAvailableMap.put("Lunch Available","true");
                     lunchAvailableMap.put("date",UserAttendance.todaysDateFormatter("YYYY-MM-dd"));
-                    lunchDataRef.child("Chanakaya").updateChildren(lunchAvailableMap);
+                    lunchDataRef.child(hostelName).updateChildren(lunchAvailableMap);
                 }
             }
 
@@ -81,13 +86,29 @@ public class food_fragment extends Fragment {
         });
 
 
+    //setting the no of lunch in toggle btn
+        lunchDataRef.child("Lunch Data").child(UserAttendance.todaysDateFormatter("YYYY-MM-dd"))
+                .child(hostelName).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        long lunchCountStr = snapshot.getChildrenCount();
+                        lunchCountTv.setText(String.format("%1$s",lunchCountStr));
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
     //Lunch RecyclerView Setup
         lunchRv = view.findViewById(R.id.foodUserLunchBoxRV);
         lunchRv.setLayoutManager(new LinearLayoutManager(requireContext()));
         options = new FirebaseRecyclerOptions.Builder<StudentHostelModel>()
                 .setQuery(lunchDataRef.child("Lunch Data")
                         .child(UserAttendance.todaysDateFormatter("YYYY-MM-dd"))
-                        .child("Chanakaya"), StudentHostelModel.class)
+                        .child(hostelName), StudentHostelModel.class)
                 .build();
         foodAdapter = new FoodAdapter(options);
         lunchRv.setAdapter(foodAdapter);
@@ -103,7 +124,7 @@ public class food_fragment extends Fragment {
 
             @Override
             public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
-                Log.d("ukrf", "onTransitionChange: "+startId+" "+endId);
+
             }
 
             @Override
@@ -112,12 +133,12 @@ public class food_fragment extends Fragment {
                     HashMap<String,Object> lunchAvailabilityMap =new HashMap<>();
                     lunchAvailabilityMap.put("Lunch Available","true");
                     lunchAvailabilityMap.put("date",UserAttendance.todaysDateFormatter("YYYY-MM-dd"));
-                    lunchDataRef.child("Chanakaya").updateChildren(lunchAvailabilityMap);
+                    lunchDataRef.child(hostelName).updateChildren(lunchAvailabilityMap);
                 } else if(currentId==2131362299){
                     HashMap<String,Object> lunchAvailabilityMap =new HashMap<>();
                     lunchAvailabilityMap.put("Lunch Available","false");
                     lunchAvailabilityMap.put("date",UserAttendance.todaysDateFormatter("YYYY-MM-dd"));
-                    lunchDataRef.child("Chanakaya").updateChildren(lunchAvailabilityMap);
+                    lunchDataRef.child(hostelName).updateChildren(lunchAvailabilityMap);
                 }
             }
 

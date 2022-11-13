@@ -6,6 +6,8 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -36,10 +38,14 @@ public class UserAttendance extends AppCompatActivity {
     DatabaseReference attendanceRef= FirebaseDatabase.getInstance().getReference("Attendance");
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_attendance);
+
+        SharedPreferences adminHostel = getApplicationContext().getSharedPreferences("adminHostel", Context.MODE_PRIVATE);
+        String hostelName = adminHostel.getString("hostelName"," ");
 
         attendanceBackBtn= findViewById(R.id.attendance_back_btn);
         attendanceSubmitBtn = findViewById(R.id.attendance_submit_btn);
@@ -49,8 +55,10 @@ public class UserAttendance extends AppCompatActivity {
         attendanceSubmitBtn = findViewById(R.id.attendance_submit_btn);
         attendanceBackBtn.setOnClickListener(view -> finish());
 
+
+
         //Attendance setup
-        attendanceRef.child(todaysDateFormatter("YYYY-MM-dd")).child("taken").addListenerForSingleValueEvent(new ValueEventListener() {
+        attendanceRef.child(hostelName).child(todaysDateFormatter("YYYY-MM-dd")).child("taken").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -62,9 +70,9 @@ public class UserAttendance extends AppCompatActivity {
                     attendanceRV.setVisibility(View.VISIBLE);
                     attendanceRV.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     options = new FirebaseRecyclerOptions.Builder<StudentHostelModel>()
-                            .setQuery(FirebaseDatabase.getInstance().getReference("Hostel").child("Chanakaya"), StudentHostelModel.class)
+                            .setQuery(FirebaseDatabase.getInstance().getReference("Hostel").child(hostelName), StudentHostelModel.class)
                             .build();
-                    attendanceAdapter = new AttendanceAdapter(options);
+                    attendanceAdapter = new AttendanceAdapter(options,getApplicationContext());
                     attendanceRV.setAdapter(attendanceAdapter);
                     attendanceAdapter.startListening();
                 }
@@ -82,11 +90,11 @@ public class UserAttendance extends AppCompatActivity {
         attendanceSubmitBtn.setOnClickListener(view ->{
             progressBar.setVisibility(View.VISIBLE);
             DatabaseReference hostelRef = FirebaseDatabase.getInstance().getReference("Hostel");
-            hostelRef.child("Chanakaya").addListenerForSingleValueEvent(new ValueEventListener() {
+            hostelRef.child(hostelName).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     Long studentCount = snapshot.getChildrenCount();
-                    attendanceRef.child(todaysDateFormatter("YYYY-MM-dd")).addListenerForSingleValueEvent(new ValueEventListener() {
+                    attendanceRef.child(hostelName).child(todaysDateFormatter("YYYY-MM-dd")).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot attendanceSnapshot) {
                             Long attendanceCount = attendanceSnapshot.getChildrenCount();
@@ -94,7 +102,7 @@ public class UserAttendance extends AppCompatActivity {
                                 progressBar.setVisibility(View.GONE);
                                 HashMap<String,Object> takenMap = new HashMap<>();
                                 takenMap.put("taken","true");
-                                attendanceRef.child(todaysDateFormatter("YYYY-MM-dd")).updateChildren(takenMap).addOnSuccessListener(success->{
+                                attendanceRef.child(hostelName).child(todaysDateFormatter("YYYY-MM-dd")).updateChildren(takenMap).addOnSuccessListener(success->{
                                     attendanceRV.setVisibility(View.GONE);
                                     attendanceTakenTV.setVisibility(View.VISIBLE);
                                     attendanceSubmitBtn.setVisibility(View.GONE);

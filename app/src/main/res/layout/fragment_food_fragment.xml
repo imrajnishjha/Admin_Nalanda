@@ -54,6 +54,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/food_lunch_count"
                 android:fontFamily="@font/poppins_semi_bold"
                 android:gravity="center"
                 android:text="135"

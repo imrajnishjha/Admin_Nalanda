@@ -66,12 +66,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:id="@+id/user_lunch_collegeName"
             android:text="Remove"
             android:layout_marginEnd="10dp"
-            android:textSize="11sp"
+            android:textSize="14sp"
             android:textColor="@color/black"
             android:elevation="6dp"
             android:backgroundTint="#ED5353"

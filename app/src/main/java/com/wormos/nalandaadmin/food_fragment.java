@@ -2,63 +2,137 @@ package com.wormos.nalandaadmin;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link food_fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Objects;
+
 public class food_fragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public food_fragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment food_fragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static food_fragment newInstance(String param1, String param2) {
-        food_fragment fragment = new food_fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    View view;
+    TextView lunchCount;
+    RecyclerView lunchRv;
+    MotionLayout addLunchToggleBtn;
+    FirebaseRecyclerOptions<StudentHostelModel> options;
+    FoodAdapter foodAdapter;
+    DatabaseReference lunchDataRef = FirebaseDatabase.getInstance().getReference("Lunch");
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_food_fragment, container, false);
+
+        view = inflater.inflate(R.layout.fragment_food_fragment, container, false);
+
+        lunchCount = view.findViewById(R.id.food_lunch_count);
+        addLunchToggleBtn = view.findViewById(R.id.food_open_lunch_motion_animation);
+
+
+    //Checking the initial condition of toggle Button
+        lunchDataRef.child("Chanakaya").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    String date = Objects.requireNonNull(snapshot.child("date").getValue()).toString();
+                    String lunchAvailability = Objects.requireNonNull(snapshot.child("Lunch Available").getValue()).toString();
+                    if(date.equals(UserAttendance.todaysDateFormatter("YYYY-MM-dd"))){
+                        if(lunchAvailability.equals("true")){
+                            addLunchToggleBtn.setProgress(1);
+                            Log.d("jiz", "onDataChange: ");
+                        }
+                    } else {
+                        addLunchToggleBtn.setProgress(1);
+                        Log.d("jiz", "onDataChange: ");
+                    }
+                } else {
+                    HashMap<String,Object> lunchAvailableMap = new HashMap<>();
+                    lunchAvailableMap.put("Lunch Available","true");
+                    lunchAvailableMap.put("date",UserAttendance.todaysDateFormatter("YYYY-MM-dd"));
+                    lunchDataRef.child("Chanakaya").updateChildren(lunchAvailableMap);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    //Lunch RecyclerView Setup
+        lunchRv = view.findViewById(R.id.foodUserLunchBoxRV);
+        lunchRv.setLayoutManager(new LinearLayoutManager(requireContext()));
+        options = new FirebaseRecyclerOptions.Builder<StudentHostelModel>()
+                .setQuery(lunchDataRef.child("Lunch Data")
+                        .child(UserAttendance.todaysDateFormatter("YYYY-MM-dd"))
+                        .child("Chanakaya"), StudentHostelModel.class)
+                .build();
+        foodAdapter = new FoodAdapter(options);
+        lunchRv.setAdapter(foodAdapter);
+
+
+
+    //Lunch Toggle Btn implementation using MotionLayout
+        addLunchToggleBtn.addTransitionListener(new MotionLayout.TransitionListener() {
+            @Override
+            public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
+
+            }
+
+            @Override
+            public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
+                Log.d("ukrf", "onTransitionChange: "+startId+" "+endId);
+            }
+
+            @Override
+            public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
+                if(currentId==2131362016){
+                    HashMap<String,Object> lunchAvailabilityMap =new HashMap<>();
+                    lunchAvailabilityMap.put("Lunch Available","true");
+                    lunchAvailabilityMap.put("date",UserAttendance.todaysDateFormatter("YYYY-MM-dd"));
+                    lunchDataRef.child("Chanakaya").updateChildren(lunchAvailabilityMap);
+                } else if(currentId==2131362299){
+                    HashMap<String,Object> lunchAvailabilityMap =new HashMap<>();
+                    lunchAvailabilityMap.put("Lunch Available","false");
+                    lunchAvailabilityMap.put("date",UserAttendance.todaysDateFormatter("YYYY-MM-dd"));
+                    lunchDataRef.child("Chanakaya").updateChildren(lunchAvailabilityMap);
+                }
+            }
+
+            @Override
+            public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
+
+            }
+        });
+
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        foodAdapter.startListening();
     }
 }

@@ -10,10 +10,7 @@
        <KeyFrameSet>
        </KeyFrameSet>
         <OnClick motion:targetId="@+id/cardView" />
-        <OnSwipe
-            motion:touchAnchorId="@+id/cardView"
-            motion:dragDirection="dragRight"
-            motion:touchAnchorSide="right" />
+
     </Transition>
 
     <ConstraintSet android:id="@+id/start">

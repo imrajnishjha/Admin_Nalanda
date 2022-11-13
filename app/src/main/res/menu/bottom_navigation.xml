@@ -9,8 +9,8 @@
 
     <item
         android:id="@+id/room_icon"
-        android:icon="@drawable/room_icon"
-        android:title="@string/my_room"
+        android:icon="@drawable/transport_icon"
+        android:title="@string/Transport"
         android:color="@color/nav_chip"/>
 
     <item

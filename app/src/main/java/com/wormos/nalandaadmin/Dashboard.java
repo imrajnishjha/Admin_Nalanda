@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentTransaction;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -39,7 +38,7 @@ public class Dashboard extends AppCompatActivity {
                     transaction.replace(R.id.dashboard_fragment_holder, new food_fragment());
                     break;
                 case 2131362242:
-                    transaction.replace(R.id.dashboard_fragment_holder, new my_room_fragment());
+                    transaction.replace(R.id.dashboard_fragment_holder, new transport_fragment());
                     break;
                 case 2131361968:
                     transaction.replace(R.id.dashboard_fragment_holder, new dashboard_fragment());

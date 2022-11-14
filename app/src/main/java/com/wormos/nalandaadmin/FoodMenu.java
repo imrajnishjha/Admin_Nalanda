@@ -1,6 +1,7 @@
 package com.wormos.nalandaadmin;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +18,7 @@ public class FoodMenu extends AppCompatActivity {
 
     TextView day1,day2,day3,day4,day5,day6,day7;
     RecyclerView foodMenuRV;
+    AppCompatButton foodMenuBackBtn;
     FirebaseRecyclerOptions<FoodMenuModel> options;
     FoodMenuAdapter foodMenuAdapter;
 
@@ -34,6 +36,9 @@ public class FoodMenu extends AppCompatActivity {
         day6 = findViewById(R.id.food_day6);
         day7 = findViewById(R.id.food_day7);
         foodMenuRV = findViewById(R.id.food_menuRV);
+        foodMenuBackBtn = findViewById(R.id.foodMenu_back_btn);
+        foodMenuBackBtn.setOnClickListener(view -> finish());
+
         foodMenuRV.setLayoutManager(new LinearLayoutManager(this));
 
         //Methodology

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".GrievanceDetail">
+
+    <LinearLayout
+        android:id="@+id/dashboard_nalanda_logo_and_name_ll_grievanceDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center|bottom"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/nalanda_logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="alanda Living"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/grievanceDetail_back_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/curvy_back_icon"
+        android:contentDescription="Back Button"
+        android:elevation="5dp"
+        app:layout_constraintTop_toTopOf="@id/dashboard_nalanda_logo_and_name_ll_grievanceDetail"
+        app:layout_constraintBottom_toBottomOf="@id/dashboard_nalanda_logo_and_name_ll_grievanceDetail"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grievance Detail"
+        android:id="@+id/grievanceDetail_text"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_semi_bold"
+        app:layout_constraintTop_toBottomOf="@id/dashboard_nalanda_logo_and_name_ll_grievanceDetail"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/grievanceDetailLL"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/grievanceDetail_text"
+        app:layout_constraintBottom_toTopOf="@id/grievance_detail_forward_ahead_btn">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/grievanceDetailId"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/rounded_swipe"
+            android:elevation="6dp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:gravity="center|start"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="45dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/grievanceDetailName"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/rounded_swipe"
+            android:elevation="6dp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center|start"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="45dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/grievanceDetailSubject"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/rounded_swipe"
+            android:elevation="6dp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center|start"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="45dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/grievanceDetailDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="15dp"
+            android:justificationMode="inter_word"
+            android:layout_marginEnd="24dp"
+            android:hint="Description"
+            android:textColorHint="@color/black"
+            app:hintAnimationEnabled="true"
+            android:background="@drawable/rounded_swipe"
+            android:elevation="6dp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="top|start"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="45dp"
+            android:minHeight="100dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/grievance_detail_forward_ahead_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="43dp"
+        android:layout_marginEnd="8dp"
+        android:text="Forward Ahead"
+        android:paddingEnd="20sp"
+        android:paddingStart="20sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_regular"
+        android:textAllCaps="false"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/nalanda_blue"
+        android:background="@drawable/no_border_curve"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="HardcodedText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

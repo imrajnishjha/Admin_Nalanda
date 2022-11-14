@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/rounded_swipe">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/grievanceItemTV"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:elevation="6dp"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:gravity="center|start"
+        android:paddingStart="20dp"
+        android:paddingTop="5dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="5dp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@id/grievanceItemStatus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/grievanceItemStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:elevation="6dp"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="#0F9F1D"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@id/grievanceItemTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/grievanceItemTV" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

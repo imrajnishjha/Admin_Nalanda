@@ -10,8 +10,8 @@
     <string name="food">Food</string>
     <string name="Transport">Transport</string>
     <string name="dashboard">Dashboard</string>
-    <string name="explore">Explore</string>
-    <string name="refer">Refer</string>
+    <string name="grievance">Grievance</string>
+    <string name="notification">Notification</string>
     <string name="add_money"><u>add money</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -22,14 +22,14 @@
 
     <item
         android:id="@+id/explore_icon"
-        android:icon="@drawable/explore_icon"
+        android:icon="@drawable/grievance"
         android:color="@color/nav_chip"
-        android:title="@string/explore"/>
+        android:title="@string/grievance"/>
 
     <item
         android:id="@+id/refer_icon"
-        android:icon="@drawable/refer_icon"
+        android:icon="@drawable/notificationlogo"
         android:color="@color/nav_chip"
-        android:title="@string/refer"/>
+        android:title="@string/notification"/>
 
 </menu>

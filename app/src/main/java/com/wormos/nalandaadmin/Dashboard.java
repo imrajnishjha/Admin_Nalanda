@@ -44,10 +44,10 @@ public class Dashboard extends AppCompatActivity {
                     transaction.replace(R.id.dashboard_fragment_holder, new dashboard_fragment());
                     break;
                 case 2131362025:
-                    transaction.replace(R.id.dashboard_fragment_holder, new explore_fragment());
+                    transaction.replace(R.id.dashboard_fragment_holder, new grievance_fragment());
                     break;
                 case 2131362227:
-                    transaction.replace(R.id.dashboard_fragment_holder, new refer_fragment());
+                    transaction.replace(R.id.dashboard_fragment_holder, new notification_fragment());
                     break;
             }
             transaction.commit();

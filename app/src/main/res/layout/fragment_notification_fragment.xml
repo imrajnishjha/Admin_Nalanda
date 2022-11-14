@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context=".notification_fragment">
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notification Detail"
+        android:id="@+id/notification_text"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_semi_bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="75dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/notificationDetailLL"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/notification_text"
+        app:layout_constraintBottom_toTopOf="@id/notification_send_btn">
+
+
+        <EditText
+            android:id="@+id/notificationSubject"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="15dp"
+            android:textSize="14sp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/rounded_swipe"
+            android:elevation="6dp"
+            android:textColorHint="@color/black"
+            android:hint="Notification Subject"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="center|start"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="45dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+        <EditText
+            android:id="@+id/notificationDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="15dp"
+            android:textSize="14sp"
+            android:layout_marginEnd="24dp"
+            android:hint="Notification Description"
+            android:textColorHint="@color/black"
+            app:hintAnimationEnabled="true"
+            android:background="@drawable/rounded_swipe"
+            android:elevation="6dp"
+            android:fontFamily="@font/poppins_regular"
+            android:gravity="top|start"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="45dp"
+            android:minHeight="100dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/notification_send_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="43dp"
+        android:layout_marginEnd="8dp"
+        android:text="Notify"
+        android:paddingEnd="40sp"
+        android:paddingStart="40sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_regular"
+        android:textAllCaps="false"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/nalanda_blue"
+        android:background="@drawable/no_border_curve"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="HardcodedText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

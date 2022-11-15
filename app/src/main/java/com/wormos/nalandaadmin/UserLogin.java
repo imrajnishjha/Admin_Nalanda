@@ -67,18 +67,23 @@ public class UserLogin extends AppCompatActivity {
             loginProgress.show();
             mAuth = FirebaseAuth.getInstance();
             mAuth.signInWithEmailAndPassword(userEmail, password).addOnSuccessListener(authResult -> {
-                Toast.makeText(getApplicationContext(), "You are logged in!", Toast.LENGTH_SHORT).show();
-                loginProgress.dismiss();
+
                 String userEmailConverted= Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail()).replaceAll("\\.","%7");;
                 adminRefs.child(userEmailConverted).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){
                             String hostelName= Objects.requireNonNull(snapshot.child("hostel").getValue()).toString();
+                            String adminType = Objects.requireNonNull(snapshot.child("adminType").getValue()).toString();
                             SharedPreferences adminHostel = getApplicationContext().getSharedPreferences("adminHostel", Context.MODE_PRIVATE);
                             SharedPreferences.Editor adminHostelEditor = adminHostel.edit();
                             adminHostelEditor.putString("hostelName",hostelName);
+                            adminHostelEditor.putString("adminType",adminType);
                             adminHostelEditor.apply();
+                            startActivity(new Intent(UserLogin.this, Dashboard.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                            finish();
+                            Toast.makeText(getApplicationContext(), "You are logged in!", Toast.LENGTH_SHORT).show();
+                            loginProgress.dismiss();
                         }
 
                     }
@@ -88,8 +93,7 @@ public class UserLogin extends AppCompatActivity {
 
                     }
                 });
-                startActivity(new Intent(UserLogin.this, Dashboard.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                finish();
+
             }).addOnFailureListener(e -> {
                 loginProgress.dismiss();
                 Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();

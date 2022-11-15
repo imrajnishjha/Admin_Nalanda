@@ -41,9 +41,11 @@ public class ExploreNalanda extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.exists()){
                         String hostelName= Objects.requireNonNull(snapshot.child("hostel").getValue()).toString();
+                        String adminType = Objects.requireNonNull(snapshot.child("adminType").getValue()).toString();
                         SharedPreferences adminHostel = getApplicationContext().getSharedPreferences("adminHostel", Context.MODE_PRIVATE);
                         SharedPreferences.Editor adminHostelEditor = adminHostel.edit();
                         adminHostelEditor.putString("hostelName",hostelName);
+                        adminHostelEditor.putString("adminType",adminType);
                         adminHostelEditor.apply();
                     }
 

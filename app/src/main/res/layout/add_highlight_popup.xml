@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView android:layout_width="300dp"
+    android:layout_height="170dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/gamingRoomCV"
+    app:cardCornerRadius="20dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginTop="2dp"
+    app:layout_constraintTop_toTopOf="parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="300dp"
+        android:layout_height="170dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/highlight_upload_progressBarRL"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:background="@drawable/circular_progress_bar"
+            android:elevation="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ProgressBar
+                android:layout_width="25dp"
+                android:layout_centerInParent="true"
+                android:layout_height="25dp"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/white"
+            android:id="@+id/select_highlight_image"
+            android:elevation="8dp"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/select_video_item"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/uploadHighlightTV"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="Upload"
+            android:padding="8dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:elevation="8dp"
+            app:layout_constraintTop_toBottomOf="@id/select_highlight_image"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/highlight_purl"
+            android:background="#454545"
+            android:scaleType="centerCrop"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="5dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:id="@+id/highlight_link"
+                android:textColor="@color/different_black"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="10sp"
+                android:paddingStart="18dp"
+                android:gravity="center"
+                android:paddingEnd="18dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="3dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="15dp"
+                android:hint="Your Link here"
+                android:textColorHint="@color/black"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:id="@+id/highlight_linkName"
+                android:textColor="@color/different_black"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="10sp"
+                android:paddingStart="18dp"
+                android:gravity="center"
+                android:paddingEnd="18dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="3dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="5dp"
+                android:hint="Link Name"
+                android:textColorHint="@color/black"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/highlight_title"
+                android:textSize="13sp"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:textColor="@color/black"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:hint="Highlight text here"
+                android:textColorHint="@color/black"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/highlight_tagline"
+                android:textSize="10sp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:textColor="@color/black"
+                android:layout_marginStart="50dp"
+                android:backgroundTint="@color/white"
+                android:hint="HightLight information"
+                android:textColorHint="@color/black"
+                android:inputType="text" />
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.cardview.widget.CardView>

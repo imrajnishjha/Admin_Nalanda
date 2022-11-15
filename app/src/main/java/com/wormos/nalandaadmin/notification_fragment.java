@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,8 +61,10 @@ public class notification_fragment extends Fragment {
                         for(DataSnapshot dataSnapshot:snapshot.getChildren()){
                             notifyUser(Objects.requireNonNull(dataSnapshot.getValue()).toString(),notificationSubject.getText().toString()
                                     ,notificationDetail.getText().toString());
-                            notificationSubject.setText("");
-                            notificationDetail.setText("");
+                            new Handler().postDelayed(()->{
+                                notificationSubject.setText("");
+                                notificationDetail.setText("");
+                            },300);
                             Toast.makeText(requireContext(), "Notified", Toast.LENGTH_SHORT).show();
                         }
                     }

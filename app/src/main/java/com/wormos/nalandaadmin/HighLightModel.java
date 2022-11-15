@@ -1,13 +1,13 @@
 package com.wormos.nalandaadmin;
 
 public class HighLightModel {
-    String title,link,linkName,tagline,purl;
+    String Title,link,linkName,tagline,purl;
 
     public HighLightModel() {
     }
 
     public HighLightModel(String title, String link, String linkName, String tagline, String purl) {
-        this.title = title;
+        Title = title;
         this.link = link;
         this.linkName = linkName;
         this.tagline = tagline;
@@ -15,11 +15,11 @@ public class HighLightModel {
     }
 
     public String getTitle() {
-        return title;
+        return Title;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        Title = title;
     }
 
     public String getLink() {

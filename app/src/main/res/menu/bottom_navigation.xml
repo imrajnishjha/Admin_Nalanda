@@ -28,7 +28,7 @@
 
     <item
         android:id="@+id/refer_icon"
-        android:icon="@drawable/notificationlogo"
+        android:icon="@drawable/bell_icon"
         android:color="@color/nav_chip"
         android:title="@string/notification"/>
 

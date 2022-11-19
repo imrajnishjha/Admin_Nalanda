@@ -19,7 +19,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,9 +85,8 @@ public class dashboard_fragment extends Fragment {
 
     //Super Admin setup
         SharedPreferences adminHostel = requireContext().getSharedPreferences("adminHostel", Context.MODE_PRIVATE);
-        String hostelName = adminHostel.getString("adminType"," ");
-        Log.d("uko", "onCreateView: "+hostelName);
-        if(hostelName.equals("superadmin")){
+        String adminName = adminHostel.getString("adminType"," ");
+        if(adminName.equals("superadmin")){
             userReferralsCard.setVisibility(View.VISIBLE);
             userAttendanceTv.setText("Hostels");
             userAttendanceIv.setImageResource(R.drawable.hostel_img);
@@ -182,7 +180,13 @@ public class dashboard_fragment extends Fragment {
         //Dashboard navigation's
         attendanceCard.setOnClickListener(v->startActivity(new Intent(getContext(),UserAttendance.class)));
         registeredUserCard.setOnClickListener(v->startActivity(new Intent(getContext(),UserRegistered.class)));
-        userVerificationCard.setOnClickListener(v->startActivity(new Intent(getContext(),UserVerification.class)));
+        userVerificationCard.setOnClickListener(v->{
+            if(adminName.equals("superadmin")){
+                startActivity(new Intent(getContext(),EventManagement.class));
+            } else {
+                startActivity(new Intent(getContext(),UserVerification.class));
+            }
+        });
 
         return view;
     }
@@ -263,7 +267,6 @@ public class dashboard_fragment extends Fragment {
     //Function which load highlight field
     public void loadHighlight(Uri imageUri){
         Dialog addHighlightDialog = new Dialog(getContext());
-        LayoutInflater layoutInflater = getLayoutInflater();
         View addHighlightView = View.inflate(requireContext(),R.layout.add_highlight_popup,null);
         EditText highlightLink = addHighlightView.findViewById(R.id.highlight_link);
         EditText highlightLinkName = addHighlightView.findViewById(R.id.highlight_linkName);

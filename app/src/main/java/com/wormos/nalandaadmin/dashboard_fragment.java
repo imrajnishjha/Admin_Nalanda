@@ -178,7 +178,13 @@ public class dashboard_fragment extends Fragment {
         });
 
         //Dashboard navigation's
-        attendanceCard.setOnClickListener(v->startActivity(new Intent(getContext(),UserAttendance.class)));
+        attendanceCard.setOnClickListener(v->{
+            if(adminName.equals("superadmin")){
+                startActivity(new Intent(getContext(),HostelDetail.class));
+            } else {
+                startActivity(new Intent(getContext(),UserAttendance.class));
+            }
+        });
         registeredUserCard.setOnClickListener(v->startActivity(new Intent(getContext(),UserRegistered.class)));
         userVerificationCard.setOnClickListener(v->{
             if(adminName.equals("superadmin")){
@@ -190,7 +196,7 @@ public class dashboard_fragment extends Fragment {
 
         return view;
     }
-
+//it upload story to firebase
     private void UploadStoryToFirebase(Dialog dialog, RelativeLayout progressBar) {
         if(videoUri!=null){
             DatabaseReference storyRef = FirebaseDatabase.getInstance().getReference("Stories");
@@ -210,7 +216,7 @@ public class dashboard_fragment extends Fragment {
         }
 
     }
-
+//it's upload highlight to firebase
     private void UploadHighlightToFirebase(Dialog dialog, RelativeLayout progressBar,String title,String tagline, String link, String linkName) {
         if(imageUri!=null){
             DatabaseReference highlightRef = FirebaseDatabase.getInstance().getReference("Highlights");
@@ -234,7 +240,7 @@ public class dashboard_fragment extends Fragment {
         }
 
     }
-
+//function to selectVideo from story
     public void chooseVideo(){
         Intent videoIntent = new Intent();
         videoIntent.setType("video/*");
@@ -264,7 +270,7 @@ public class dashboard_fragment extends Fragment {
         }
     }
 
-    //Function which load highlight field
+    //Function which load upload highlight popup
     public void loadHighlight(Uri imageUri){
         Dialog addHighlightDialog = new Dialog(getContext());
         View addHighlightView = View.inflate(requireContext(),R.layout.add_highlight_popup,null);

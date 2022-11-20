@@ -36,7 +36,7 @@ public class food_fragment extends Fragment {
     FirebaseRecyclerOptions<StudentHostelModel> options;
     FoodAdapter foodAdapter;
     DatabaseReference lunchDataRef = FirebaseDatabase.getInstance().getReference("Lunch");
-    TextView foodMenuEdtTv;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,10 +55,6 @@ public class food_fragment extends Fragment {
 
         lunchCountTv = view.findViewById(R.id.food_lunch_count);
         addLunchToggleBtn = view.findViewById(R.id.food_open_lunch_motion_animation);
-
-    //navigating to edit food menu
-        foodMenuEdtTv = view.findViewById(R.id.food_menu_edit_text);
-        foodMenuEdtTv.setOnClickListener(v->startActivity(new Intent(requireContext(),FoodMenu.class)));
 
 
     //Checking the initial condition of toggle Button

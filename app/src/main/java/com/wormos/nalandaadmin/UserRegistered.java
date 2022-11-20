@@ -26,6 +26,7 @@ public class UserRegistered extends AppCompatActivity {
 
         SharedPreferences adminHostel = getApplicationContext().getSharedPreferences("adminHostel", Context.MODE_PRIVATE);
         String hostelName = adminHostel.getString("hostelName"," ");
+        String adminName = adminHostel.getString("adminType"," ");
 
         registeredUserBackBtn = findViewById(R.id.registered_user_back_btn);
         registeredUserBackBtn.setOnClickListener(view -> finish());
@@ -33,11 +34,21 @@ public class UserRegistered extends AppCompatActivity {
         //User Setup
         registeredUserRV = findViewById(R.id.registeredUserRV);
         registeredUserRV.setLayoutManager(new LinearLayoutManager(this));
-        options = new FirebaseRecyclerOptions.Builder<UserRegisteredModel>()
-                .setQuery(FirebaseDatabase.getInstance().getReference("Hostel").child(hostelName), UserRegisteredModel.class)
-                .build();
-        userRegisteredAdapter = new UserRegisteredAdapter(options);
+
+        if(adminName.equals("superadmin")){
+            options = new FirebaseRecyclerOptions.Builder<UserRegisteredModel>()
+                    .setQuery(FirebaseDatabase.getInstance().getReference("Students"), UserRegisteredModel.class)
+                    .build();
+            userRegisteredAdapter = new UserRegisteredAdapter(options,"yes");
+        } else {
+            options = new FirebaseRecyclerOptions.Builder<UserRegisteredModel>()
+                    .setQuery(FirebaseDatabase.getInstance().getReference("Hostel").child(hostelName), UserRegisteredModel.class)
+                    .build();
+            userRegisteredAdapter = new UserRegisteredAdapter(options,"no");
+        }
         registeredUserRV.setAdapter(userRegisteredAdapter);
+
+
     }
 
     @Override

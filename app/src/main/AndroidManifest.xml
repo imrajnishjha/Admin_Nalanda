@@ -32,6 +32,9 @@
         android:theme="@style/Theme.NalandaApp"
         tools:targetApi="31">
         <activity
+            android:name=".Refer"
+            android:exported="false" />
+        <activity
             android:name=".HostelAdd"
             android:exported="false" />
         <activity
@@ -45,9 +48,6 @@
             android:exported="false" />
         <activity
             android:name=".GrievanceDetail"
-            android:exported="false" />
-        <activity
-            android:name=".FoodMenu"
             android:exported="false" />
         <activity
             android:name=".UserVerification"

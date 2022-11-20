@@ -85,6 +85,7 @@
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/activity_hostel_add.xml" value="0.22" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/activity_hostel_detail.xml" value="0.33" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/activity_refer.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/activity_select_hostel.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/activity_story_view.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/activity_student_profile.xml" value="0.20416666666666666" />
@@ -102,6 +103,7 @@
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/fragment_dashboard_fragment.xml" value="0.33" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/fragment_explore_fragment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/fragment_food_fragment.xml" value="0.25" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/fragment_food_menu.xml" value="0.19010416666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/fragment_grievance_fragment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/fragment_my_room_fragment.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/fragment_notification_fragment.xml" value="0.33" />
@@ -111,6 +113,7 @@
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/highlight_item.xml" value="0.33" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/hostel_detail_item.xml" value="0.5" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/image_picker_item.xml" value="0.203125" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/refer_item.xml" value="0.33" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/registered_user_item.xml" value="0.33" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/room_no_and_enter_password_popup.xml" value="0.33" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_Admin/app/src/main/res/layout/select_story_video_popup.xml" value="0.33" />

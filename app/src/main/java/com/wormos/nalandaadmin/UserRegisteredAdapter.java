@@ -35,36 +35,48 @@ public class UserRegisteredAdapter extends FirebaseRecyclerAdapter<UserRegistere
      * {@link FirebaseRecyclerOptions} for configuration options.
      *
      */
-    public UserRegisteredAdapter(@NonNull FirebaseRecyclerOptions<UserRegisteredModel> options) {
+    public UserRegisteredAdapter(@NonNull FirebaseRecyclerOptions<UserRegisteredModel> options, String superAdmin) {
         super(options);
+        this.superAdmin = superAdmin;
     }
+    String superAdmin;
     DatabaseReference studentData = FirebaseDatabase.getInstance().getReference();
 
     @Override
     protected void onBindViewHolder(@NonNull UserRegisteredViewHolder holder, int position, @NonNull UserRegisteredModel model) {
         holder.userId.setText(model.getId());
+        String studentKey = getRef(holder.getAbsoluteAdapterPosition()).getKey();
         final String[] hostelName = new String[1];
 
-        studentData.child("Students").child(Objects.requireNonNull(getRef(position).getKey())).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    String purl = Objects.requireNonNull(snapshot.child("purl").getValue()).toString();
-                    String name = Objects.requireNonNull(snapshot.child("name").getValue()).toString();
-                    hostelName[0] = Objects.requireNonNull(snapshot.child("hostel").getValue()).toString();
-                    holder.userName.setText(name);
-                    Glide.with(holder.userProfile.getContext())
-                            .load(purl)
-                            .error(R.drawable.nalanda_logo)
-                            .into(holder.userProfile);
+        if(superAdmin.equals("yes")){
+            holder.userName.setText(model.getName());
+            Glide.with(holder.userProfile.getContext())
+                    .load(model.getPurl())
+                    .error(R.drawable.nalanda_logo)
+                    .into(holder.userProfile);
+            hostelName[0] = model.getHostel();
+        } else {
+            studentData.child("Students").child(Objects.requireNonNull(getRef(position).getKey())).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        String purl = Objects.requireNonNull(snapshot.child("purl").getValue()).toString();
+                        String name = Objects.requireNonNull(snapshot.child("name").getValue()).toString();
+                        hostelName[0] = Objects.requireNonNull(snapshot.child("hostel").getValue()).toString();
+                        holder.userName.setText(name);
+                        Glide.with(holder.userProfile.getContext())
+                                .load(purl)
+                                .error(R.drawable.nalanda_logo)
+                                .into(holder.userProfile);
+
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
                 }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+            });
+        }
 
         holder.removeBtn.setOnClickListener(view -> {
             Dialog confirmationDialog = new Dialog(view.getContext());
@@ -81,9 +93,9 @@ public class UserRegisteredAdapter extends FirebaseRecyclerAdapter<UserRegistere
 
             yesBtn.setOnClickListener(yesView->{
                 confirmationDialog.setCancelable(false);
-                studentData.child("Students").child(Objects.requireNonNull(getRef(position).getKey())).removeValue()
+                studentData.child("Students").child(Objects.requireNonNull(studentKey)).removeValue()
                         .addOnSuccessListener(success-> studentData.child("Hostel").child(hostelName[0])
-                                .child(Objects.requireNonNull(getRef(position).getKey()))
+                                .child(Objects.requireNonNull(studentKey))
                                 .removeValue()
                                 .addOnSuccessListener(removalSuccess->confirmationDialog.dismiss())
                                 .addOnFailureListener(failure->{

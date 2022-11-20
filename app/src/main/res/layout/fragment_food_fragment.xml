@@ -19,27 +19,11 @@
         app:layout_constraintEnd_toStartOf="@id/food_open_lunch_motion_animation"
         app:layout_constraintTop_toTopOf="@id/food_open_lunch_motion_animation" />
 
-    <TextView
-        android:id="@+id/food_menu_edit_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/poppins_semi_bold"
-        android:text="Edit Menu"
-        android:gravity="start|center"
-        android:textColor="#34C843"
-        app:layout_constraintEnd_toStartOf="@id/food_open_lunch_text"
-        app:layout_constraintBottom_toBottomOf="@id/food_open_lunch_motion_animation"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/food_open_lunch_motion_animation" />
-
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:id="@+id/food_open_lunch_motion_animation"
         android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         app:layoutDescription="@xml/fragment_food_fragment_xml_food_open_lunch_motion_animation_scene"
         app:layout_constraintEnd_toEndOf="parent"

@@ -178,6 +178,9 @@ public class dashboard_fragment extends Fragment {
         });
 
         //Dashboard navigation's
+        registeredUserCard.setOnClickListener(v->startActivity(new Intent(getContext(),UserRegistered.class)));
+        userReferralsCard.setOnClickListener(v-> startActivity(new Intent(getContext(),Refer.class)));
+
         attendanceCard.setOnClickListener(v->{
             if(adminName.equals("superadmin")){
                 startActivity(new Intent(getContext(),HostelDetail.class));
@@ -185,7 +188,7 @@ public class dashboard_fragment extends Fragment {
                 startActivity(new Intent(getContext(),UserAttendance.class));
             }
         });
-        registeredUserCard.setOnClickListener(v->startActivity(new Intent(getContext(),UserRegistered.class)));
+
         userVerificationCard.setOnClickListener(v->{
             if(adminName.equals("superadmin")){
                 startActivity(new Intent(getContext(),EventManagement.class));
@@ -194,8 +197,15 @@ public class dashboard_fragment extends Fragment {
             }
         });
 
+
+
+
         return view;
     }
+
+
+
+
 //it upload story to firebase
     private void UploadStoryToFirebase(Dialog dialog, RelativeLayout progressBar) {
         if(videoUri!=null){

@@ -1,6 +1,8 @@
 package com.wormos.nalandaadmin;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -20,6 +22,9 @@ public class Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        SharedPreferences adminHostel = getApplicationContext().getSharedPreferences("adminHostel", Context.MODE_PRIVATE);
+        String adminName = adminHostel.getString("adminType"," ");
+
         //initialization
         bottomNavBar = findViewById(R.id.bottom_nav_Bar);
         dashboardProfilePhoto = findViewById(R.id.dashboard_profile_photo);
@@ -34,19 +39,24 @@ public class Dashboard extends AppCompatActivity {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             Log.d("uhj", "onBubbleClick: " + i);
             switch (i) {
-                case 2131362046:
-                    transaction.replace(R.id.dashboard_fragment_holder, new food_fragment());
+                case 2131362093:
+                    if(adminName.equals("superadmin")){
+                        transaction.replace(R.id.dashboard_fragment_holder, new FoodMenuFragment());
+                    } else {
+                        transaction.replace(R.id.dashboard_fragment_holder, new food_fragment());
+                    }
+
                     break;
-                case 2131362242:
+                case 2131362329:
                     transaction.replace(R.id.dashboard_fragment_holder, new transport_fragment());
                     break;
-                case 2131361968:
+                case 2131361994:
                     transaction.replace(R.id.dashboard_fragment_holder, new dashboard_fragment());
                     break;
-                case 2131362025:
+                case 2131362056:
                     transaction.replace(R.id.dashboard_fragment_holder, new grievance_fragment());
                     break;
-                case 2131362227:
+                case 2131362314:
                     transaction.replace(R.id.dashboard_fragment_holder, new notification_fragment());
                     break;
             }

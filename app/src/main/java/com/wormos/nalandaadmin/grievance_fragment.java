@@ -37,13 +37,20 @@ public class grievance_fragment extends Fragment {
 
         SharedPreferences adminHostel = requireContext().getSharedPreferences("adminHostel", Context.MODE_PRIVATE);
         String hostelName = adminHostel.getString("hostelName"," ");
+        String adminName = adminHostel.getString("adminType"," ");
 
         view= inflater.inflate(R.layout.fragment_grievance_fragment, container, false);
         grievanceRV = view.findViewById(R.id.grievanceRv);
         grievanceRV.setLayoutManager(new LinearLayoutManager(requireContext()));
 
-        options = new FirebaseRecyclerOptions.Builder<GrievanceModel>()
-                .setQuery(FirebaseDatabase.getInstance().getReference("Grievance").child(hostelName),GrievanceModel.class).build();
+        if(adminName.equals("superadmin")){
+            options = new FirebaseRecyclerOptions.Builder<GrievanceModel>()
+                    .setQuery(FirebaseDatabase.getInstance().getReference("Grievance Forwarded"),GrievanceModel.class).build();
+        } else {
+            options = new FirebaseRecyclerOptions.Builder<GrievanceModel>()
+                    .setQuery(FirebaseDatabase.getInstance().getReference("Grievance").child(hostelName),GrievanceModel.class).build();
+        }
+
         grievanceAdapter = new GrievanceAdapter(options);
         grievanceRV.setAdapter(grievanceAdapter);
 

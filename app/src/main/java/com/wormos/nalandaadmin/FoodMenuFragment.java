@@ -1,12 +1,15 @@
 package com.wormos.nalandaadmin;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
+import android.graphics.Color;
+import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Color;
-import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -14,32 +17,36 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
-public class FoodMenu extends AppCompatActivity {
 
+public class FoodMenuFragment extends Fragment {
+
+    View view;
     TextView day1,day2,day3,day4,day5,day6,day7;
     RecyclerView foodMenuRV;
-    AppCompatButton foodMenuBackBtn;
     FirebaseRecyclerOptions<FoodMenuModel> options;
     FoodMenuAdapter foodMenuAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_menu);
 
-        //initialization
-        day1 = findViewById(R.id.food_day1);
-        day2 = findViewById(R.id.food_day2);
-        day3 = findViewById(R.id.food_day3);
-        day4 = findViewById(R.id.food_day4);
-        day5 = findViewById(R.id.food_day5);
-        day6 = findViewById(R.id.food_day6);
-        day7 = findViewById(R.id.food_day7);
-        foodMenuRV = findViewById(R.id.food_menuRV);
-        foodMenuBackBtn = findViewById(R.id.foodMenu_back_btn);
-        foodMenuBackBtn.setOnClickListener(view -> finish());
+    }
 
-        foodMenuRV.setLayoutManager(new LinearLayoutManager(this));
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        view = inflater.inflate(R.layout.fragment_food_menu, container, false);
+        day1 = view.findViewById(R.id.food_day1);
+        day2 = view.findViewById(R.id.food_day2);
+        day3 = view.findViewById(R.id.food_day3);
+        day4 = view.findViewById(R.id.food_day4);
+        day5 = view.findViewById(R.id.food_day5);
+        day6 = view.findViewById(R.id.food_day6);
+        day7 = view.findViewById(R.id.food_day7);
+        foodMenuRV = view.findViewById(R.id.food_menuRV);
+
+        foodMenuRV.setLayoutManager(new LinearLayoutManager(requireContext()));
 
         //Methodology
         dateSetter(day1,day2,day3,day4,day5,day6,day7);
@@ -53,11 +60,11 @@ public class FoodMenu extends AppCompatActivity {
         day6.setOnClickListener(v-> menuChange(day6,day2,day3,day4,day5,day1,day7));
         day7.setOnClickListener(v-> menuChange(day7,day2,day3,day4,day5,day6,day1));
 
-
+        return view;
     }
 
     //Different day menuChange
-    public void menuChange(TextView day1,TextView day2,TextView day3,TextView day4,TextView day5,TextView day6,TextView day7){
+    public void menuChange(TextView day1, TextView day2, TextView day3, TextView day4, TextView day5, TextView day6, TextView day7){
         day1.setBackgroundColor(Color.parseColor("#2D6BC8"));
         day2.setBackgroundColor(Color.parseColor("#7CB8E7"));
         day3.setBackgroundColor(Color.parseColor("#7CB8E7"));
@@ -160,7 +167,7 @@ public class FoodMenu extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         foodMenuAdapter.startListening();
     }

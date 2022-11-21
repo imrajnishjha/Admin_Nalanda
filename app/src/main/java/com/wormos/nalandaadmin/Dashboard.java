@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -68,7 +67,6 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String ProfilePurl = Objects.requireNonNull(snapshot.child("purl").getValue()).toString();
-                String NameStr = Objects.requireNonNull(snapshot.child("name").getValue()).toString();
                 Glide.with(getApplicationContext())
                         .load(ProfilePurl)
                         .error(R.drawable.defaultprofile2)

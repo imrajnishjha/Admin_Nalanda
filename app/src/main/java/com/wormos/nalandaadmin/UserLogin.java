@@ -68,7 +68,7 @@ public class UserLogin extends AppCompatActivity {
             mAuth = FirebaseAuth.getInstance();
             mAuth.signInWithEmailAndPassword(userEmail, password).addOnSuccessListener(authResult -> {
 
-                String userEmailConverted= Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail()).replaceAll("\\.","%7");;
+                String userEmailConverted= Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail()).replaceAll("\\.","%7");
                 adminRefs.child(userEmailConverted).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

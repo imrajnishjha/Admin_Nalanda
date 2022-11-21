@@ -62,7 +62,7 @@
             android:name=".StoryView"
             android:exported="false" />
         <activity
-            android:name=".StudentProfile"
+            android:name=".AdminProfile"
             android:exported="false" />
         <activity
             android:name=".Dashboard"

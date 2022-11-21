@@ -50,12 +50,15 @@ public class GrievanceDetail extends AppCompatActivity {
 
         String grievanceDetailKey = getIntent().getStringExtra("GrievanceKey");
 
+
     //Super Admin and Admin  part functionality implementation
     if(adminName.equals("superadmin")){
-        grievanceRef = FirebaseDatabase.getInstance().getReference("Grievance").child(hostelName).child(grievanceDetailKey);
-        grievanceDetailForwardBtn.setVisibility(View.GONE);
-    } else {
         grievanceRef = FirebaseDatabase.getInstance().getReference("Grievance Forwarded").child(grievanceDetailKey);
+        grievanceDetailForwardBtn.setVisibility(View.GONE);
+
+    } else {
+        grievanceRef = FirebaseDatabase.getInstance().getReference("Grievance").child(hostelName).child(grievanceDetailKey);
+
     }
 
         grievanceRef.addListenerForSingleValueEvent(new ValueEventListener() {

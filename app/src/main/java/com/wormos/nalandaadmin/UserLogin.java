@@ -80,7 +80,7 @@ public class UserLogin extends AppCompatActivity {
                             adminHostelEditor.putString("hostelName",hostelName);
                             adminHostelEditor.putString("adminType",adminType);
                             adminHostelEditor.apply();
-                            startActivity(new Intent(UserLogin.this, Dashboard.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                            startActivity(new Intent(UserLogin.this, Dashboard.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK));
                             finish();
                             Toast.makeText(getApplicationContext(), "You are logged in!", Toast.LENGTH_SHORT).show();
                             loginProgress.dismiss();
